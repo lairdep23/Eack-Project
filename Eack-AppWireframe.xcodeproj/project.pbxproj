@@ -8,20 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		202A9D471F2AD837005257ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D461F2AD837005257ED /* AppDelegate.swift */; };
-		202A9D491F2AD837005257ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D481F2AD837005257ED /* ViewController.swift */; };
 		202A9D4C1F2AD837005257ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4A1F2AD837005257ED /* Main.storyboard */; };
 		202A9D4E1F2AD837005257ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4D1F2AD837005257ED /* Assets.xcassets */; };
 		202A9D511F2AD837005257ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4F1F2AD837005257ED /* LaunchScreen.storyboard */; };
+		202A9D5F1F2ADBBB005257ED /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D5D1F2ADBBA005257ED /* SWRevealViewController.m */; };
+		202A9D611F2ADC62005257ED /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D601F2ADC62005257ED /* SideMenuVC.swift */; };
+		202A9D631F2ADCDB005257ED /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D621F2ADCDB005257ED /* HomeVC.swift */; };
+		C3365CE957EA1C6749E9074E /* Pods_Eack_AppWireframe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D89966B42E38BD761730FB /* Pods_Eack_AppWireframe.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15082673B5D9B01FBFD3D870 /* Pods-Eack-AppWireframe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eack-AppWireframe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eack-AppWireframe/Pods-Eack-AppWireframe.release.xcconfig"; sourceTree = "<group>"; };
 		202A9D431F2AD837005257ED /* Eack-AppWireframe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eack-AppWireframe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		202A9D461F2AD837005257ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		202A9D481F2AD837005257ED /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		202A9D4B1F2AD837005257ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		202A9D4D1F2AD837005257ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		202A9D501F2AD837005257ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		202A9D521F2AD837005257ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		202A9D5C1F2ADBB9005257ED /* Eack-AppWireframe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eack-AppWireframe-Bridging-Header.h"; sourceTree = "<group>"; };
+		202A9D5D1F2ADBBA005257ED /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../../Downloads/SWRevealViewController-master 2/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
+		202A9D5E1F2ADBBB005257ED /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../../Downloads/SWRevealViewController-master 2/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
+		202A9D601F2ADC62005257ED /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
+		202A9D621F2ADCDB005257ED /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		69D89966B42E38BD761730FB /* Pods_Eack_AppWireframe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eack_AppWireframe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F499B6A520C4CA257883CED3 /* Pods-Eack-AppWireframe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eack-AppWireframe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eack-AppWireframe/Pods-Eack-AppWireframe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3365CE957EA1C6749E9074E /* Pods_Eack_AppWireframe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +51,8 @@
 			children = (
 				202A9D451F2AD837005257ED /* Eack-AppWireframe */,
 				202A9D441F2AD837005257ED /* Products */,
+				CA1108EE5BE2E62F230DAF38 /* Pods */,
+				E704B2495B03D5C96715E0E0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +67,67 @@
 		202A9D451F2AD837005257ED /* Eack-AppWireframe */ = {
 			isa = PBXGroup;
 			children = (
+				202A9D5B1F2ADBA5005257ED /* Controller */,
+				202A9D5A1F2ADB9F005257ED /* View */,
+				202A9D591F2ADB94005257ED /* Model */,
+				202A9D581F2ADB87005257ED /* Supporting Files */,
 				202A9D461F2AD837005257ED /* AppDelegate.swift */,
-				202A9D481F2AD837005257ED /* ViewController.swift */,
 				202A9D4A1F2AD837005257ED /* Main.storyboard */,
 				202A9D4D1F2AD837005257ED /* Assets.xcassets */,
 				202A9D4F1F2AD837005257ED /* LaunchScreen.storyboard */,
 				202A9D521F2AD837005257ED /* Info.plist */,
 			);
 			path = "Eack-AppWireframe";
+			sourceTree = "<group>";
+		};
+		202A9D581F2ADB87005257ED /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				202A9D5E1F2ADBBB005257ED /* SWRevealViewController.h */,
+				202A9D5D1F2ADBBA005257ED /* SWRevealViewController.m */,
+				202A9D5C1F2ADBB9005257ED /* Eack-AppWireframe-Bridging-Header.h */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		202A9D591F2ADB94005257ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		202A9D5A1F2ADB9F005257ED /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		202A9D5B1F2ADBA5005257ED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				202A9D601F2ADC62005257ED /* SideMenuVC.swift */,
+				202A9D621F2ADCDB005257ED /* HomeVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA1108EE5BE2E62F230DAF38 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F499B6A520C4CA257883CED3 /* Pods-Eack-AppWireframe.debug.xcconfig */,
+				15082673B5D9B01FBFD3D870 /* Pods-Eack-AppWireframe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E704B2495B03D5C96715E0E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				69D89966B42E38BD761730FB /* Pods_Eack_AppWireframe.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +137,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 202A9D551F2AD837005257ED /* Build configuration list for PBXNativeTarget "Eack-AppWireframe" */;
 			buildPhases = (
+				98F27158A9982DE06B8534D3 /* [CP] Check Pods Manifest.lock */,
 				202A9D3F1F2AD837005257ED /* Sources */,
 				202A9D401F2AD837005257ED /* Frameworks */,
 				202A9D411F2AD837005257ED /* Resources */,
+				99162F2BDE621C34BC929844 /* [CP] Embed Pods Frameworks */,
+				DE3769397C24831887988BA9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +165,7 @@
 				TargetAttributes = {
 					202A9D421F2AD837005257ED = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 					};
 				};
 			};
@@ -130,13 +200,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		98F27158A9982DE06B8534D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		99162F2BDE621C34BC929844 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eack-AppWireframe/Pods-Eack-AppWireframe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE3769397C24831887988BA9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eack-AppWireframe/Pods-Eack-AppWireframe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		202A9D3F1F2AD837005257ED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				202A9D491F2AD837005257ED /* ViewController.swift in Sources */,
 				202A9D471F2AD837005257ED /* AppDelegate.swift in Sources */,
+				202A9D631F2ADCDB005257ED /* HomeVC.swift in Sources */,
+				202A9D611F2ADC62005257ED /* SideMenuVC.swift in Sources */,
+				202A9D5F1F2ADBBB005257ED /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,13 +391,17 @@
 		};
 		202A9D561F2AD837005257ED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F499B6A520C4CA257883CED3 /* Pods-Eack-AppWireframe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 79SDS825P4;
 				INFOPLIST_FILE = "Eack-AppWireframe/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evanlaird.Eack-AppWireframe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Eack-AppWireframe/Supporting Files/Eack-AppWireframe-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,13 +409,16 @@
 		};
 		202A9D571F2AD837005257ED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15082673B5D9B01FBFD3D870 /* Pods-Eack-AppWireframe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 79SDS825P4;
 				INFOPLIST_FILE = "Eack-AppWireframe/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evanlaird.Eack-AppWireframe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Eack-AppWireframe/Supporting Files/Eack-AppWireframe-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
