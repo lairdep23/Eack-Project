@@ -14,6 +14,16 @@
 		202A9D5F1F2ADBBB005257ED /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D5D1F2ADBBA005257ED /* SWRevealViewController.m */; };
 		202A9D611F2ADC62005257ED /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D601F2ADC62005257ED /* SideMenuVC.swift */; };
 		202A9D631F2ADCDB005257ED /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D621F2ADCDB005257ED /* HomeVC.swift */; };
+		209DC5931F2BE5ED0020923D /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5921F2BE5ED0020923D /* ShadowView.swift */; };
+		209DC5951F2BE60E0020923D /* ProfileImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5941F2BE60E0020923D /* ProfileImgView.swift */; };
+		209DC5971F2BEDC00020923D /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5961F2BEDC00020923D /* JoinButton.swift */; };
+		209DC5991F2BF05C0020923D /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5981F2BF05C0020923D /* ActivityCell.swift */; };
+		20AB9D901F2CC80C004681B4 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB9D8F1F2CC80C004681B4 /* DataService.swift */; };
+		20AB9D921F2CC86C004681B4 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB9D911F2CC86C004681B4 /* Activity.swift */; };
+		20BA9FED1F2D47CB00FF1E00 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FEC1F2D47CB00FF1E00 /* ProfileButton.swift */; };
+		20BA9FEF1F2D4DA800FF1E00 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FEE1F2D4DA800FF1E00 /* Category.swift */; };
+		20BA9FF11F2D4E3700FF1E00 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FF01F2D4E3700FF1E00 /* CategoryCell.swift */; };
+		20BA9FF31F2D5FB700FF1E00 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FF21F2D5FB700FF1E00 /* TopView.swift */; };
 		C3365CE957EA1C6749E9074E /* Pods_Eack_AppWireframe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D89966B42E38BD761730FB /* Pods_Eack_AppWireframe.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +40,16 @@
 		202A9D5E1F2ADBBB005257ED /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../../Downloads/SWRevealViewController-master 2/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
 		202A9D601F2ADC62005257ED /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		202A9D621F2ADCDB005257ED /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		209DC5921F2BE5ED0020923D /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		209DC5941F2BE60E0020923D /* ProfileImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgView.swift; sourceTree = "<group>"; };
+		209DC5961F2BEDC00020923D /* JoinButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
+		209DC5981F2BF05C0020923D /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
+		20AB9D8F1F2CC80C004681B4 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		20AB9D911F2CC86C004681B4 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		20BA9FEC1F2D47CB00FF1E00 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
+		20BA9FEE1F2D4DA800FF1E00 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		20BA9FF01F2D4E3700FF1E00 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		20BA9FF21F2D5FB700FF1E00 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		69D89966B42E38BD761730FB /* Pods_Eack_AppWireframe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eack_AppWireframe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F499B6A520C4CA257883CED3 /* Pods-Eack-AppWireframe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eack-AppWireframe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eack-AppWireframe/Pods-Eack-AppWireframe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +87,7 @@
 		202A9D451F2AD837005257ED /* Eack-AppWireframe */ = {
 			isa = PBXGroup;
 			children = (
+				20AB9D8E1F2CC7FB004681B4 /* Services */,
 				202A9D5B1F2ADBA5005257ED /* Controller */,
 				202A9D5A1F2ADB9F005257ED /* View */,
 				202A9D591F2ADB94005257ED /* Model */,
@@ -93,6 +114,8 @@
 		202A9D591F2ADB94005257ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				20AB9D911F2CC86C004681B4 /* Activity.swift */,
+				20BA9FEE1F2D4DA800FF1E00 /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,6 +123,13 @@
 		202A9D5A1F2ADB9F005257ED /* View */ = {
 			isa = PBXGroup;
 			children = (
+				209DC5921F2BE5ED0020923D /* ShadowView.swift */,
+				209DC5941F2BE60E0020923D /* ProfileImgView.swift */,
+				209DC5961F2BEDC00020923D /* JoinButton.swift */,
+				209DC5981F2BF05C0020923D /* ActivityCell.swift */,
+				20BA9FEC1F2D47CB00FF1E00 /* ProfileButton.swift */,
+				20BA9FF01F2D4E3700FF1E00 /* CategoryCell.swift */,
+				20BA9FF21F2D5FB700FF1E00 /* TopView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -111,6 +141,14 @@
 				202A9D621F2ADCDB005257ED /* HomeVC.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		20AB9D8E1F2CC7FB004681B4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				20AB9D8F1F2CC80C004681B4 /* DataService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		CA1108EE5BE2E62F230DAF38 /* Pods */ = {
@@ -253,10 +291,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20BA9FF31F2D5FB700FF1E00 /* TopView.swift in Sources */,
+				20BA9FF11F2D4E3700FF1E00 /* CategoryCell.swift in Sources */,
+				20AB9D921F2CC86C004681B4 /* Activity.swift in Sources */,
+				20AB9D901F2CC80C004681B4 /* DataService.swift in Sources */,
+				209DC5991F2BF05C0020923D /* ActivityCell.swift in Sources */,
+				20BA9FED1F2D47CB00FF1E00 /* ProfileButton.swift in Sources */,
 				202A9D471F2AD837005257ED /* AppDelegate.swift in Sources */,
+				209DC5931F2BE5ED0020923D /* ShadowView.swift in Sources */,
 				202A9D631F2ADCDB005257ED /* HomeVC.swift in Sources */,
 				202A9D611F2ADC62005257ED /* SideMenuVC.swift in Sources */,
+				209DC5951F2BE60E0020923D /* ProfileImgView.swift in Sources */,
 				202A9D5F1F2ADBBB005257ED /* SWRevealViewController.m in Sources */,
+				209DC5971F2BEDC00020923D /* JoinButton.swift in Sources */,
+				20BA9FEF1F2D4DA800FF1E00 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +445,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 79SDS825P4;
 				INFOPLIST_FILE = "Eack-AppWireframe/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evanlaird.Eack-AppWireframe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -415,6 +464,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 79SDS825P4;
 				INFOPLIST_FILE = "Eack-AppWireframe/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.evanlaird.Eack-AppWireframe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -443,6 +493,7 @@
 				202A9D571F2AD837005257ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
