@@ -75,6 +75,21 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         return DataService.instance.getCategories().count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let activityRow = Int(indexPath.row)
+        
+        performSegue(withIdentifier: "toActivityDetailVC", sender: activityRow)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let activityDetailsVC = segue.destination as? ActivityDetailVC {
+            
+            assert(sender as! Int != nil)
+            activityDetailsVC.setupView(activityRow: sender as! Int)
+        }
+    }
+    
     
     
     

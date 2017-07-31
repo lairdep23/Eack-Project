@@ -14,6 +14,7 @@
 		202A9D5F1F2ADBBB005257ED /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D5D1F2ADBBA005257ED /* SWRevealViewController.m */; };
 		202A9D611F2ADC62005257ED /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D601F2ADC62005257ED /* SideMenuVC.swift */; };
 		202A9D631F2ADCDB005257ED /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D621F2ADCDB005257ED /* HomeVC.swift */; };
+		2098CF001F2E85B700F82274 /* ActivityDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098CEFF1F2E85B700F82274 /* ActivityDetailVC.swift */; };
 		209DC5931F2BE5ED0020923D /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5921F2BE5ED0020923D /* ShadowView.swift */; };
 		209DC5951F2BE60E0020923D /* ProfileImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5941F2BE60E0020923D /* ProfileImgView.swift */; };
 		209DC5971F2BEDC00020923D /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5961F2BEDC00020923D /* JoinButton.swift */; };
@@ -40,6 +41,7 @@
 		202A9D5E1F2ADBBB005257ED /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../../Downloads/SWRevealViewController-master 2/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
 		202A9D601F2ADC62005257ED /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		202A9D621F2ADCDB005257ED /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		2098CEFF1F2E85B700F82274 /* ActivityDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailVC.swift; sourceTree = "<group>"; };
 		209DC5921F2BE5ED0020923D /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		209DC5941F2BE60E0020923D /* ProfileImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgView.swift; sourceTree = "<group>"; };
 		209DC5961F2BEDC00020923D /* JoinButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				202A9D601F2ADC62005257ED /* SideMenuVC.swift */,
 				202A9D621F2ADCDB005257ED /* HomeVC.swift */,
+				2098CEFF1F2E85B700F82274 /* ActivityDetailVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20BA9FF31F2D5FB700FF1E00 /* TopView.swift in Sources */,
+				2098CF001F2E85B700F82274 /* ActivityDetailVC.swift in Sources */,
 				20BA9FF11F2D4E3700FF1E00 /* CategoryCell.swift in Sources */,
 				20AB9D921F2CC86C004681B4 /* Activity.swift in Sources */,
 				20AB9D901F2CC80C004681B4 /* DataService.swift in Sources */,
