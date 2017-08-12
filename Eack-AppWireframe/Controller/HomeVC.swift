@@ -8,12 +8,16 @@
 
 import UIKit
 
-class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITabBarDelegate {
 
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var TabBar: UITabBar!
+    
+    let DataServ = DataService()
+    var postActivityVC: UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         tableView.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
+        TabBar.delegate = self
+        
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.handleTap))
+//        self.view.addGestureRecognizer(tap)
         
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         
@@ -31,15 +39,24 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
 
        
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        tableView.reloadData()
+    }
+    
+    
+    @objc func handleTap() {
+        self.view.endEditing(true)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataService.instance.getActivites().count 
+        return DataServ.getActivites().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell") as? ActivityCell {
             
-            let activity = DataService.instance.getActivites()[indexPath.row]
+            let activity = DataServ.getActivites()[indexPath.row]
             cell.updateViews(activity: activity)
         
             return cell
@@ -58,7 +75,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCell {
-            let category = DataService.instance.getCategories()[indexPath.item]
+            let category = DataServ.getCategories()[indexPath.item]
             cell.updateViews(category: category)
             
             return cell
@@ -72,7 +89,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DataService.instance.getCategories().count
+        return DataServ.getCategories().count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -85,10 +102,27 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let activityDetailsVC = segue.destination as? ActivityDetailVC {
             
-            assert(sender as! Int != nil)
+            assert(sender as? Int != nil)
             activityDetailsVC.setupView(activityRow: sender as! Int)
         }
     }
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item.title == "Post Activity" {
+            performSegue(withIdentifier: "toPostActivityVC", sender: nil)
+//            if postActivityVC == nil {
+//                var storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                postActivityVC = storyboard.instantiateViewController(withIdentifier: "postActivityVC") as! postActivityVC
+//            }
+//
+//            self.view.insertSubview((postActivityVC?.view)!, belowSubview: self.TabBar)
+          
+        }
+    }
+    
+    
+    
+    
     
     
     
