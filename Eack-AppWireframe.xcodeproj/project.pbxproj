@@ -14,6 +14,7 @@
 		202A9D5F1F2ADBBB005257ED /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D5D1F2ADBBA005257ED /* SWRevealViewController.m */; };
 		202A9D611F2ADC62005257ED /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D601F2ADC62005257ED /* SideMenuVC.swift */; };
 		202A9D631F2ADCDB005257ED /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D621F2ADCDB005257ED /* HomeVC.swift */; };
+		204916CA1F4B70C000E199B3 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204916C91F4B70C000E199B3 /* ShareButton.swift */; };
 		20660E461F31431500AADF64 /* menuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20660E451F31431500AADF64 /* menuCell.swift */; };
 		2098CF001F2E85B700F82274 /* ActivityDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098CEFF1F2E85B700F82274 /* ActivityDetailVC.swift */; };
 		209DC5931F2BE5ED0020923D /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5921F2BE5ED0020923D /* ShadowView.swift */; };
@@ -46,6 +47,7 @@
 		202A9D5E1F2ADBBB005257ED /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../../Downloads/SWRevealViewController-master 2/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
 		202A9D601F2ADC62005257ED /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		202A9D621F2ADCDB005257ED /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		204916C91F4B70C000E199B3 /* ShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
 		20660E451F31431500AADF64 /* menuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuCell.swift; sourceTree = "<group>"; };
 		2098CEFF1F2E85B700F82274 /* ActivityDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailVC.swift; sourceTree = "<group>"; };
 		209DC5921F2BE5ED0020923D /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				20660E451F31431500AADF64 /* menuCell.swift */,
 				209F4DFA1F3F27BD00E206B8 /* KeyboardBoundView.swift */,
 				209EB01B1F3BDC0500FC5FC2 /* MessageView.swift */,
+				204916C91F4B70C000E199B3 /* ShareButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				204916CA1F4B70C000E199B3 /* ShareButton.swift in Sources */,
 				20BA9FF31F2D5FB700FF1E00 /* TopView.swift in Sources */,
 				2098CF001F2E85B700F82274 /* ActivityDetailVC.swift in Sources */,
 				20BA9FF11F2D4E3700FF1E00 /* CategoryCell.swift in Sources */,

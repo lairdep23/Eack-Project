@@ -434,7 +434,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="b0W-zo-St6"/>
                                 </constraints>
-                                <string key="text">Bring the gap between social and media by posting an activity for others to join. Just fill out the following information and post your activity to the community. New friends and new adventures in no time!</string>
+                                <string key="text">Bridge the gap between social and media by posting an activity for others to join. Just fill out the following information and post your activity to the community. New friends and new adventures in no time!</string>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1198,7 +1198,7 @@
                                     <constraint firstItem="G7x-g9-otJ" firstAttribute="leading" secondItem="Exf-k6-5Nb" secondAttribute="trailing" constant="8" id="yRq-Yb-obx"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share withMe with Friends!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lkl-1R-4rb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share Trestled with Friends!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lkl-1R-4rb">
                                 <rect key="frame" x="76" y="68" width="239" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="efb-fx-HJP"/>
@@ -1207,23 +1207,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EeP-19-ba0">
-                                <rect key="frame" x="76" y="96" width="100" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ZfH-Bg-Vfk"/>
-                                    <constraint firstAttribute="width" constant="100" id="guF-2C-oDc"/>
-                                </constraints>
-                                <state key="normal" title="Facebook"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ha9-Dr-SSB">
-                                <rect key="frame" x="215" y="96" width="100" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="VBJ-s9-eOn"/>
-                                    <constraint firstAttribute="width" constant="100" id="pxF-0B-Bc8"/>
-                                </constraints>
-                                <state key="normal" title="Twitter"/>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WZa-Sd-DjI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WZa-Sd-DjI">
                                 <rect key="frame" x="0.0" y="134" width="375" height="533"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1255,22 +1239,39 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oPj-6G-9cJ">
+                                <rect key="frame" x="76" y="96" width="120" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZH-Mp-O4q" customClass="ShareButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="33.5" height="30"/>
+                                        <state key="normal" image="FB-f-LogoGrey"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvy-y6-N4T" customClass="ShareButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                        <rect key="frame" x="43.5" y="0.0" width="33" height="30"/>
+                                        <state key="normal" image="TwitterGrey"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7YA-Gv-zWC" customClass="ShareButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                        <rect key="frame" x="86.5" y="0.0" width="33.5" height="30"/>
+                                        <state key="normal" image="glyph-logo_May2016Grey"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="brc-gM-O0t"/>
+                                    <constraint firstAttribute="height" constant="30" id="uzN-N6-BCm"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="WZa-Sd-DjI" firstAttribute="top" secondItem="EeP-19-ba0" secondAttribute="bottom" constant="8" id="5gJ-5c-On5"/>
-                            <constraint firstItem="EeP-19-ba0" firstAttribute="leading" secondItem="Lkl-1R-4rb" secondAttribute="leading" id="BaF-o6-2F9"/>
                             <constraint firstItem="q89-Yl-G3g" firstAttribute="trailing" secondItem="Lkl-1R-4rb" secondAttribute="trailing" constant="60" id="HDa-aH-Eel"/>
-                            <constraint firstItem="Ha9-Dr-SSB" firstAttribute="trailing" secondItem="Lkl-1R-4rb" secondAttribute="trailing" id="OGn-7G-729"/>
                             <constraint firstItem="WZa-Sd-DjI" firstAttribute="leading" secondItem="q89-Yl-G3g" secondAttribute="leading" id="Or1-nt-ZGY"/>
-                            <constraint firstItem="EeP-19-ba0" firstAttribute="top" secondItem="Lkl-1R-4rb" secondAttribute="bottom" constant="8" id="RTp-ky-Bpa"/>
+                            <constraint firstItem="oPj-6G-9cJ" firstAttribute="leading" secondItem="Lkl-1R-4rb" secondAttribute="leading" id="P5e-Zw-6AQ"/>
                             <constraint firstItem="eAS-9v-9Cv" firstAttribute="leading" secondItem="q89-Yl-G3g" secondAttribute="leading" id="Rde-w8-hSo"/>
                             <constraint firstItem="WZa-Sd-DjI" firstAttribute="bottom" secondItem="q89-Yl-G3g" secondAttribute="bottom" id="SYd-CV-YT4"/>
                             <constraint firstItem="eAS-9v-9Cv" firstAttribute="trailing" secondItem="q89-Yl-G3g" secondAttribute="trailing" id="cmS-8k-Pmr"/>
                             <constraint firstItem="Lkl-1R-4rb" firstAttribute="top" secondItem="eAS-9v-9Cv" secondAttribute="bottom" constant="8" id="hxS-Xz-ADt"/>
                             <constraint firstItem="WZa-Sd-DjI" firstAttribute="trailing" secondItem="q89-Yl-G3g" secondAttribute="trailing" id="ksQ-Qp-gNF"/>
                             <constraint firstItem="Lkl-1R-4rb" firstAttribute="width" secondItem="G7x-g9-otJ" secondAttribute="width" id="rL0-aP-s6Y"/>
-                            <constraint firstItem="Ha9-Dr-SSB" firstAttribute="top" secondItem="Lkl-1R-4rb" secondAttribute="bottom" constant="8" id="sBq-yn-9we"/>
                             <constraint firstItem="eAS-9v-9Cv" firstAttribute="top" secondItem="KYS-7P-LcH" secondAttribute="top" id="y32-oe-5RA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q89-Yl-G3g"/>
@@ -1288,9 +1289,12 @@
     </scenes>
     <resources>
         <image name="EvanConroy" width="573" height="539"/>
+        <image name="FB-f-LogoGrey" width="72" height="72"/>
         <image name="HollywoodHike" width="1984" height="880"/>
+        <image name="TwitterGrey" width="400" height="400"/>
         <image name="backButtonEack" width="32" height="32"/>
         <image name="exercise" width="64" height="64"/>
+        <image name="glyph-logo_May2016Grey" width="504" height="504"/>
         <image name="if_arrow-right-01_186409" width="32" height="32"/>
         <image name="if_like-01_186399" width="32" height="32"/>
         <image name="if_location-01_186394" width="32" height="32"/>
