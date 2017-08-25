@@ -7,12 +7,35 @@
 //
 
 import Foundation
+import Firebase
 
+let DB_BASE = Database.database().reference()
 
 
 class DataService {
     
-    static var instance = DataService()
+    static let instance = DataService()
+    
+    private var _REF_BASE = DB_BASE
+    private var _REF_USERS = DB_BASE.child("users")
+    private var _REF_ACTS = DB_BASE.child("activities")
+    
+    
+    var REF_BASE: DatabaseReference {
+        return _REF_BASE
+    }
+    
+    var REF_USERS: DatabaseReference {
+        return _REF_USERS
+    }
+    
+    var REF_ACTS: DatabaseReference {
+        return _REF_ACTS
+    }
+    
+    func createDBUser(uid: String, userData:Dictionary<String,Any>) {
+        REF_USERS.child(uid).updateChildValues(userData)
+    }
     
     var activities = [
         Activity(user: "Mykala Conroy", title: "Let's Go Hiking!", loc: "Hollywood Hills", time: "12:00 pm", userImgName: "M-Conroy.png", mainImage: "HollywoodHike.jpg"),
