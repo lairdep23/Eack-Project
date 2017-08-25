@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,15 +38,15 @@
         <!--HomeVC-->
         <scene sceneID="15Z-Xw-Mzz">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="yYR-uo-1ET" customClass="HomeVC" customModule="Eack_AppWireframe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="yYR-uo-1ET" customClass="HomeVC" customModule="Trestled" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EiG-vT-MoB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BXi-gf-fr1" customClass="TopView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BXi-gf-fr1" customClass="TopView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgV-pW-5tQ" customClass="ProfileButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgV-pW-5tQ" customClass="ProfileButton" customModule="Trestled" customModuleProvider="target">
                                         <rect key="frame" x="8" y="20" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="0fm-vw-QRK"/>
@@ -62,21 +62,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search For An Activity" translatesAutoresizingMaskIntoConstraints="NO" id="56Q-Li-PBb">
-                                        <rect key="frame" x="48" y="16" width="319" height="44"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                    </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.42352941176470588" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="56Q-Li-PBb" secondAttribute="trailing" constant="8" id="7LH-Ui-K9X"/>
-                                    <constraint firstItem="56Q-Li-PBb" firstAttribute="leading" secondItem="jgV-pW-5tQ" secondAttribute="trailing" constant="8" id="Zj1-ku-DDw"/>
                                     <constraint firstAttribute="bottom" secondItem="jgV-pW-5tQ" secondAttribute="bottom" constant="8" id="csM-IY-OFl"/>
                                     <constraint firstAttribute="height" constant="60" id="hxi-eL-bOf"/>
-                                    <constraint firstItem="56Q-Li-PBb" firstAttribute="top" secondItem="BXi-gf-fr1" secondAttribute="top" constant="16" id="iAj-55-AW2"/>
                                     <constraint firstItem="jgV-pW-5tQ" firstAttribute="leading" secondItem="BXi-gf-fr1" secondAttribute="leading" constant="8" id="ibg-6y-WSz"/>
-                                    <constraint firstAttribute="bottom" secondItem="56Q-Li-PBb" secondAttribute="bottom" id="pnL-9R-QlJ"/>
                                 </constraints>
                             </view>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajt-4B-jIZ">
@@ -118,7 +109,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="en9-0q-Q8a" customClass="ShadowView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="en9-0q-Q8a" customClass="ShadowView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="16" y="96" width="343" height="140"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1zK-GD-HO2">
@@ -131,7 +122,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="5z4-7p-7Ro" customClass="CategoryCell" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="categoryCell" id="5z4-7p-7Ro" customClass="CategoryCell" customModule="Trestled" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="65" height="56"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -193,14 +184,14 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="activityCell" rowHeight="220" id="Cvd-Ke-O0a" customClass="ActivityCell" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="activityCell" rowHeight="220" id="Cvd-Ke-O0a" customClass="ActivityCell" customModule="Trestled" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="220"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" tableViewCell="Cvd-Ke-O0a" id="6Ht-vN-YNp">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="diK-4z-ZxB" customClass="ShadowView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                                <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="diK-4z-ZxB" customClass="ShadowView" customModule="Trestled" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="8" width="343" height="204"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HollywoodHike" translatesAutoresizingMaskIntoConstraints="NO" id="8MB-lJ-MHI">
@@ -247,7 +238,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BgF-Ec-fkF">
                                                                     <rect key="frame" x="0.0" y="0.0" width="107.5" height="42"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="requests_icon" translatesAutoresizingMaskIntoConstraints="NO" id="z00-QY-clb" customClass="ProfileImgView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="requests_icon" translatesAutoresizingMaskIntoConstraints="NO" id="z00-QY-clb" customClass="ProfileImgView" customModule="Trestled" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
                                                                             <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <constraints>
@@ -271,7 +262,7 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48p-CW-FTQ" customClass="JoinButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48p-CW-FTQ" customClass="JoinButton" customModule="Trestled" customModuleProvider="target">
                                                                     <rect key="frame" x="237" y="0.0" width="90" height="42"/>
                                                                     <color key="backgroundColor" red="0.93725490196078431" green="0.42352941176470588" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
@@ -369,12 +360,12 @@
         <!--Post ActivityVC-->
         <scene sceneID="Sh1-MD-7hT">
             <objects>
-                <viewController id="UCH-En-iID" customClass="postActivityVC" customModule="Eack_AppWireframe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UCH-En-iID" customClass="postActivityVC" customModule="Trestled" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Di5-MO-Ybr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxz-c9-987" customClass="TopView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxz-c9-987" customClass="TopView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Svj-yw-WSa">
@@ -413,7 +404,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Svj-yw-WSa" secondAttribute="bottom" constant="8" id="nWm-qT-btq"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9h-x3-fiw" customClass="JoinButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9h-x3-fiw" customClass="JoinButton" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="112" y="605" width="150" height="42"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.42352941179999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -439,7 +430,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sV-jY-c3o" customClass="ShadowView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sV-jY-c3o" customClass="ShadowView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="16" y="210" width="343" height="140"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ES9-tm-c30">
@@ -479,7 +470,7 @@
                                     <constraint firstItem="TBF-ua-a3P" firstAttribute="leading" secondItem="6sV-jY-c3o" secondAttribute="leading" constant="8" id="u3a-eD-7Fy"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q60-T8-j58" customClass="ShadowView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q60-T8-j58" customClass="ShadowView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="16" y="156" width="343" height="46"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Activity Title" textAlignment="natural" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="yRq-7K-8vo">
@@ -511,7 +502,7 @@
                                     <constraint firstAttribute="bottom" secondItem="4vx-Xg-WqI" secondAttribute="bottom" constant="4" id="pCf-cP-Q4u"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMy-uo-wcS" customClass="ShadowView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMy-uo-wcS" customClass="ShadowView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="16" y="358" width="343" height="116"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mYl-sR-vRh">
@@ -543,7 +534,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Dvs-bp-IDx" secondAttribute="trailing" constant="8" id="vzg-Xr-FVp"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFy-Ep-i3c" customClass="ShadowView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFy-Ep-i3c" customClass="ShadowView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="16" y="482" width="343" height="78"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCR-ih-igV">
@@ -626,7 +617,7 @@
         <!--Activity DetailVC-->
         <scene sceneID="pb3-yT-AEy">
             <objects>
-                <viewController id="HTh-y9-bPG" customClass="ActivityDetailVC" customModule="Eack_AppWireframe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HTh-y9-bPG" customClass="ActivityDetailVC" customModule="Trestled" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hPB-9k-YJI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -638,7 +629,7 @@
                                     <constraint firstAttribute="height" constant="120" id="xZb-f9-aXI"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l6j-3R-wlb" customClass="TopView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l6j-3R-wlb" customClass="TopView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4X-HE-Ri9">
@@ -679,7 +670,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6NO-6E-KhA">
                                 <rect key="frame" x="16" y="282" width="343" height="100"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="requests_icon" translatesAutoresizingMaskIntoConstraints="NO" id="eOL-qZ-aKI" customClass="ProfileImgView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="requests_icon" translatesAutoresizingMaskIntoConstraints="NO" id="eOL-qZ-aKI" customClass="ProfileImgView" customModule="Trestled" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -724,7 +715,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="a5S-j5-Lms">
                                                 <rect key="frame" x="0.0" y="58" width="235" height="42"/>
                                                 <subviews>
-                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvQ-xE-D48" customClass="JoinButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HvQ-xE-D48" customClass="JoinButton" customModule="Trestled" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="42"/>
                                                         <color key="backgroundColor" red="0.93725490199999995" green="0.42352941179999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -739,7 +730,7 @@
                                                             <action selector="messagePressed:" destination="HTh-y9-bPG" eventType="touchUpInside" id="uSs-Lz-dLz"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b72-nK-tIj" customClass="JoinButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b72-nK-tIj" customClass="JoinButton" customModule="Trestled" customModuleProvider="target">
                                                         <rect key="frame" x="145" y="0.0" width="90" height="42"/>
                                                         <color key="backgroundColor" red="0.93725490199999995" green="0.42352941179999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -765,7 +756,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVh-YR-iil" customClass="JoinButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVh-YR-iil" customClass="JoinButton" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="112" y="605" width="150" height="42"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.42352941179999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -780,7 +771,7 @@
                                     <action selector="requestToJoinPressed:" destination="HTh-y9-bPG" eventType="touchUpInside" id="Wwh-Fh-HZ2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGk-t9-1N6" customClass="JoinButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGk-t9-1N6" customClass="JoinButton" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="112" y="159" width="150" height="42"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.42352941179999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -838,7 +829,7 @@
                                     <constraint firstAttribute="trailing" secondItem="tHa-w8-jvc" secondAttribute="trailing" id="C5V-bU-tUT"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Dp-hB-d7Q" customClass="TopView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Dp-hB-d7Q" customClass="TopView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="561" width="375" height="36"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="foz-Tf-31J">
@@ -927,7 +918,7 @@
         <!--MessageVC-->
         <scene sceneID="oG3-rn-GyF">
             <objects>
-                <viewController id="RmX-xM-pSJ" customClass="MessageVC" customModule="Eack_AppWireframe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RmX-xM-pSJ" customClass="MessageVC" customModule="Trestled" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Eb7-nz-wAR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -935,7 +926,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RWR-72-eGa">
                                 <rect key="frame" x="0.0" y="120" width="375" height="501"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6B-Wl-AmC" customClass="MessageView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6B-Wl-AmC" customClass="MessageView" customModule="Trestled" customModuleProvider="target">
                                         <rect key="frame" x="8" y="87" width="200" height="47"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evan has accepted your join request!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79m-X1-HNi">
@@ -954,7 +945,7 @@
                                             <constraint firstItem="79m-X1-HNi" firstAttribute="top" secondItem="G6B-Wl-AmC" secondAttribute="top" constant="8" id="hT6-uI-t01"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XsY-Ct-4qR" customClass="MessageView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XsY-Ct-4qR" customClass="MessageView" customModule="Trestled" customModuleProvider="target">
                                         <rect key="frame" x="167" y="16" width="200" height="63"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've requested to join Evan at Hollywood Hills, CA at 7pm and awaiting a response." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39g-Y1-jQl">
@@ -973,7 +964,7 @@
                                             <constraint firstAttribute="trailing" secondItem="39g-Y1-jQl" secondAttribute="trailing" constant="8" id="tzB-9g-eUm"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQM-7Z-Hdu" customClass="MessageView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQM-7Z-Hdu" customClass="MessageView" customModule="Trestled" customModuleProvider="target">
                                         <rect key="frame" x="8" y="142" width="200" height="32"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can't wait to meet!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqX-dy-50z">
@@ -1004,13 +995,13 @@
                                     <constraint firstItem="JQM-7Z-Hdu" firstAttribute="top" secondItem="G6B-Wl-AmC" secondAttribute="bottom" constant="8" id="ygq-s4-wIq"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Prp-AW-YKZ" customClass="TopView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Prp-AW-YKZ" customClass="TopView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="60" width="375" height="60"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="T3s-JC-H4I">
                                         <rect key="frame" x="115.5" y="5" width="144" height="50"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="requests_icon" translatesAutoresizingMaskIntoConstraints="NO" id="WRa-k2-p8P" customClass="ProfileImgView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="requests_icon" translatesAutoresizingMaskIntoConstraints="NO" id="WRa-k2-p8P" customClass="ProfileImgView" customModule="Trestled" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -1044,7 +1035,7 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="vwF-FO-4Tm"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E33-XI-1mc" customClass="TopView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E33-XI-1mc" customClass="TopView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hci-kX-qCq">
@@ -1154,15 +1145,15 @@
         <!--Side MenuVC-->
         <scene sceneID="ywb-az-nus">
             <objects>
-                <viewController id="xa9-lp-6B4" customClass="SideMenuVC" customModule="Eack_AppWireframe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xa9-lp-6B4" customClass="SideMenuVC" customModule="Trestled" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KYS-7P-LcH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAS-9v-9Cv" customClass="TopView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAS-9v-9Cv" customClass="TopView" customModule="Trestled" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EvanConroy" translatesAutoresizingMaskIntoConstraints="NO" id="Exf-k6-5Nb" customClass="ProfileImgView" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EvanConroy" translatesAutoresizingMaskIntoConstraints="NO" id="Exf-k6-5Nb" customClass="ProfileImgView" customModule="Trestled" customModuleProvider="target">
                                         <rect key="frame" x="8" y="28" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -1211,7 +1202,7 @@
                                 <rect key="frame" x="0.0" y="134" width="375" height="533"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuCell" rowHeight="50" id="shk-Yg-OZY" customClass="menuCell" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuCell" rowHeight="50" id="shk-Yg-OZY" customClass="menuCell" customModule="Trestled" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="shk-Yg-OZY" id="F89-Kf-Ji8">
@@ -1242,15 +1233,15 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oPj-6G-9cJ">
                                 <rect key="frame" x="76" y="96" width="120" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZH-Mp-O4q" customClass="ShareButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZH-Mp-O4q" customClass="ShareButton" customModule="Trestled" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="33.5" height="30"/>
                                         <state key="normal" image="FB-f-LogoGrey"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvy-y6-N4T" customClass="ShareButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvy-y6-N4T" customClass="ShareButton" customModule="Trestled" customModuleProvider="target">
                                         <rect key="frame" x="43.5" y="0.0" width="33" height="30"/>
                                         <state key="normal" image="TwitterGrey"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7YA-Gv-zWC" customClass="ShareButton" customModule="Eack_AppWireframe" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7YA-Gv-zWC" customClass="ShareButton" customModule="Trestled" customModuleProvider="target">
                                         <rect key="frame" x="86.5" y="0.0" width="33.5" height="30"/>
                                         <state key="normal" image="glyph-logo_May2016Grey"/>
                                     </button>

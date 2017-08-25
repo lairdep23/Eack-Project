@@ -11,12 +11,12 @@
 		202A9D4C1F2AD837005257ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4A1F2AD837005257ED /* Main.storyboard */; };
 		202A9D4E1F2AD837005257ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4D1F2AD837005257ED /* Assets.xcassets */; };
 		202A9D511F2AD837005257ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4F1F2AD837005257ED /* LaunchScreen.storyboard */; };
-		202A9D5F1F2ADBBB005257ED /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D5D1F2ADBBA005257ED /* SWRevealViewController.m */; };
 		202A9D611F2ADC62005257ED /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D601F2ADC62005257ED /* SideMenuVC.swift */; };
 		202A9D631F2ADCDB005257ED /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D621F2ADCDB005257ED /* HomeVC.swift */; };
 		204916CA1F4B70C000E199B3 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204916C91F4B70C000E199B3 /* ShareButton.swift */; };
 		20660E461F31431500AADF64 /* menuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20660E451F31431500AADF64 /* menuCell.swift */; };
 		2098CF001F2E85B700F82274 /* ActivityDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098CEFF1F2E85B700F82274 /* ActivityDetailVC.swift */; };
+		2098D1921F4FA4E100A6DDFC /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2098D18F1F4FA1C300A6DDFC /* SWRevealViewController.m */; };
 		209DC5931F2BE5ED0020923D /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5921F2BE5ED0020923D /* ShadowView.swift */; };
 		209DC5951F2BE60E0020923D /* ProfileImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5941F2BE60E0020923D /* ProfileImgView.swift */; };
 		209DC5971F2BEDC00020923D /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5961F2BEDC00020923D /* JoinButton.swift */; };
@@ -31,25 +31,25 @@
 		20BA9FEF1F2D4DA800FF1E00 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FEE1F2D4DA800FF1E00 /* Category.swift */; };
 		20BA9FF11F2D4E3700FF1E00 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FF01F2D4E3700FF1E00 /* CategoryCell.swift */; };
 		20BA9FF31F2D5FB700FF1E00 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FF21F2D5FB700FF1E00 /* TopView.swift */; };
-		C3365CE957EA1C6749E9074E /* Pods_Eack_AppWireframe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D89966B42E38BD761730FB /* Pods_Eack_AppWireframe.framework */; };
+		F4F0AA9FEB82E0254F90B079 /* Pods_Trestled.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9D39B7CA72155B0D669321 /* Pods_Trestled.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		15082673B5D9B01FBFD3D870 /* Pods-Eack-AppWireframe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eack-AppWireframe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eack-AppWireframe/Pods-Eack-AppWireframe.release.xcconfig"; sourceTree = "<group>"; };
-		202A9D431F2AD837005257ED /* Eack-AppWireframe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eack-AppWireframe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		202A9D431F2AD837005257ED /* Trestled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trestled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		202A9D461F2AD837005257ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		202A9D4B1F2AD837005257ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		202A9D4D1F2AD837005257ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		202A9D501F2AD837005257ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		202A9D521F2AD837005257ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		202A9D5C1F2ADBB9005257ED /* Eack-AppWireframe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eack-AppWireframe-Bridging-Header.h"; sourceTree = "<group>"; };
-		202A9D5D1F2ADBBA005257ED /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../../Downloads/SWRevealViewController-master 2/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
-		202A9D5E1F2ADBBB005257ED /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../../Downloads/SWRevealViewController-master 2/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
 		202A9D601F2ADC62005257ED /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		202A9D621F2ADCDB005257ED /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		204916C91F4B70C000E199B3 /* ShareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButton.swift; sourceTree = "<group>"; };
 		20660E451F31431500AADF64 /* menuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuCell.swift; sourceTree = "<group>"; };
 		2098CEFF1F2E85B700F82274 /* ActivityDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailVC.swift; sourceTree = "<group>"; };
+		2098D18E1F4FA1C300A6DDFC /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		2098D18F1F4FA1C300A6DDFC /* SWRevealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		2098D1911F4FA28600A6DDFC /* Trestled-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Trestled-Bridging-Header.h"; sourceTree = "<group>"; };
 		209DC5921F2BE5ED0020923D /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		209DC5941F2BE60E0020923D /* ProfileImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgView.swift; sourceTree = "<group>"; };
 		209DC5961F2BEDC00020923D /* JoinButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
@@ -65,7 +65,10 @@
 		20BA9FF01F2D4E3700FF1E00 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		20BA9FF21F2D5FB700FF1E00 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		69D89966B42E38BD761730FB /* Pods_Eack_AppWireframe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eack_AppWireframe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F9D39B7CA72155B0D669321 /* Pods_Trestled.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trestled.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3DED22CB94C161CF9CE5768 /* Pods-Trestled.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trestled.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trestled/Pods-Trestled.debug.xcconfig"; sourceTree = "<group>"; };
 		F499B6A520C4CA257883CED3 /* Pods-Eack-AppWireframe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eack-AppWireframe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eack-AppWireframe/Pods-Eack-AppWireframe.debug.xcconfig"; sourceTree = "<group>"; };
+		F64BF4D65707578B1E0EF885 /* Pods-Trestled.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trestled.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trestled/Pods-Trestled.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3365CE957EA1C6749E9074E /* Pods_Eack_AppWireframe.framework in Frameworks */,
+				F4F0AA9FEB82E0254F90B079 /* Pods_Trestled.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +86,7 @@
 		202A9D3A1F2AD837005257ED = {
 			isa = PBXGroup;
 			children = (
-				202A9D451F2AD837005257ED /* Eack-AppWireframe */,
+				202A9D451F2AD837005257ED /* Trestled */,
 				202A9D441F2AD837005257ED /* Products */,
 				CA1108EE5BE2E62F230DAF38 /* Pods */,
 				E704B2495B03D5C96715E0E0 /* Frameworks */,
@@ -93,12 +96,12 @@
 		202A9D441F2AD837005257ED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				202A9D431F2AD837005257ED /* Eack-AppWireframe.app */,
+				202A9D431F2AD837005257ED /* Trestled.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		202A9D451F2AD837005257ED /* Eack-AppWireframe */ = {
+		202A9D451F2AD837005257ED /* Trestled */ = {
 			isa = PBXGroup;
 			children = (
 				20AB9D8E1F2CC7FB004681B4 /* Services */,
@@ -112,15 +115,15 @@
 				202A9D4F1F2AD837005257ED /* LaunchScreen.storyboard */,
 				202A9D521F2AD837005257ED /* Info.plist */,
 			);
-			path = "Eack-AppWireframe";
+			path = Trestled;
 			sourceTree = "<group>";
 		};
 		202A9D581F2ADB87005257ED /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				202A9D5E1F2ADBBB005257ED /* SWRevealViewController.h */,
-				202A9D5D1F2ADBBA005257ED /* SWRevealViewController.m */,
-				202A9D5C1F2ADBB9005257ED /* Eack-AppWireframe-Bridging-Header.h */,
+				2098D18E1F4FA1C300A6DDFC /* SWRevealViewController.h */,
+				2098D18F1F4FA1C300A6DDFC /* SWRevealViewController.m */,
+				2098D1911F4FA28600A6DDFC /* Trestled-Bridging-Header.h */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -177,6 +180,8 @@
 			children = (
 				F499B6A520C4CA257883CED3 /* Pods-Eack-AppWireframe.debug.xcconfig */,
 				15082673B5D9B01FBFD3D870 /* Pods-Eack-AppWireframe.release.xcconfig */,
+				C3DED22CB94C161CF9CE5768 /* Pods-Trestled.debug.xcconfig */,
+				F64BF4D65707578B1E0EF885 /* Pods-Trestled.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				69D89966B42E38BD761730FB /* Pods_Eack_AppWireframe.framework */,
+				7F9D39B7CA72155B0D669321 /* Pods_Trestled.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -192,9 +198,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		202A9D421F2AD837005257ED /* Eack-AppWireframe */ = {
+		202A9D421F2AD837005257ED /* Trestled */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 202A9D551F2AD837005257ED /* Build configuration list for PBXNativeTarget "Eack-AppWireframe" */;
+			buildConfigurationList = 202A9D551F2AD837005257ED /* Build configuration list for PBXNativeTarget "Trestled" */;
 			buildPhases = (
 				98F27158A9982DE06B8534D3 /* [CP] Check Pods Manifest.lock */,
 				202A9D3F1F2AD837005257ED /* Sources */,
@@ -207,9 +213,9 @@
 			);
 			dependencies = (
 			);
-			name = "Eack-AppWireframe";
+			name = Trestled;
 			productName = "Eack-AppWireframe";
-			productReference = 202A9D431F2AD837005257ED /* Eack-AppWireframe.app */;
+			productReference = 202A9D431F2AD837005257ED /* Trestled.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -228,7 +234,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 202A9D3E1F2AD837005257ED /* Build configuration list for PBXProject "Eack-AppWireframe" */;
+			buildConfigurationList = 202A9D3E1F2AD837005257ED /* Build configuration list for PBXProject "Trestled" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -241,7 +247,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				202A9D421F2AD837005257ED /* Eack-AppWireframe */,
+				202A9D421F2AD837005257ED /* Trestled */,
 			);
 		};
 /* End PBXProject section */
@@ -287,7 +293,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eack-AppWireframe/Pods-Eack-AppWireframe-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Trestled/Pods-Trestled-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DE3769397C24831887988BA9 /* [CP] Copy Pods Resources */ = {
@@ -302,7 +308,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eack-AppWireframe/Pods-Eack-AppWireframe-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Trestled/Pods-Trestled-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -326,10 +332,10 @@
 				209DC5931F2BE5ED0020923D /* ShadowView.swift in Sources */,
 				209EB01E1F3BDF1400FC5FC2 /* MessageVC.swift in Sources */,
 				202A9D631F2ADCDB005257ED /* HomeVC.swift in Sources */,
+				2098D1921F4FA4E100A6DDFC /* SWRevealViewController.m in Sources */,
 				202A9D611F2ADC62005257ED /* SideMenuVC.swift in Sources */,
 				209DC5951F2BE60E0020923D /* ProfileImgView.swift in Sources */,
 				209F4DFD1F3F3A6000E206B8 /* postActivityVC.swift in Sources */,
-				202A9D5F1F2ADBBB005257ED /* SWRevealViewController.m in Sources */,
 				209DC5971F2BEDC00020923D /* JoinButton.swift in Sources */,
 				20660E461F31431500AADF64 /* menuCell.swift in Sources */,
 				20BA9FEF1F2D4DA800FF1E00 /* Category.swift in Sources */,
@@ -467,17 +473,17 @@
 		};
 		202A9D561F2AD837005257ED /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F499B6A520C4CA257883CED3 /* Pods-Eack-AppWireframe.debug.xcconfig */;
+			baseConfigurationReference = C3DED22CB94C161CF9CE5768 /* Pods-Trestled.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 79SDS825P4;
-				INFOPLIST_FILE = "Eack-AppWireframe/Info.plist";
+				INFOPLIST_FILE = Trestled/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.evanlaird.Eack-AppWireframe";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evanlaird.Trestled;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Eack-AppWireframe/Supporting Files/Eack-AppWireframe-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Trestled/Supporting Files/Trestled-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -486,17 +492,17 @@
 		};
 		202A9D571F2AD837005257ED /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15082673B5D9B01FBFD3D870 /* Pods-Eack-AppWireframe.release.xcconfig */;
+			baseConfigurationReference = F64BF4D65707578B1E0EF885 /* Pods-Trestled.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 79SDS825P4;
-				INFOPLIST_FILE = "Eack-AppWireframe/Info.plist";
+				INFOPLIST_FILE = Trestled/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.evanlaird.Eack-AppWireframe";
+				PRODUCT_BUNDLE_IDENTIFIER = com.evanlaird.Trestled;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Eack-AppWireframe/Supporting Files/Eack-AppWireframe-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Trestled/Supporting Files/Trestled-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -505,7 +511,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		202A9D3E1F2AD837005257ED /* Build configuration list for PBXProject "Eack-AppWireframe" */ = {
+		202A9D3E1F2AD837005257ED /* Build configuration list for PBXProject "Trestled" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				202A9D531F2AD837005257ED /* Debug */,
@@ -514,7 +520,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		202A9D551F2AD837005257ED /* Build configuration list for PBXNativeTarget "Eack-AppWireframe" */ = {
+		202A9D551F2AD837005257ED /* Build configuration list for PBXNativeTarget "Trestled" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				202A9D561F2AD837005257ED /* Debug */,

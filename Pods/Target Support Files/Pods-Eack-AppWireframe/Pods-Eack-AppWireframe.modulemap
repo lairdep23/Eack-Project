@@ -1,6 +1,0 @@
-framework module Pods_Eack_AppWireframe {
-  umbrella header "Pods-Eack-AppWireframe-umbrella.h"
-
-  export *
-  module * { export * }
-}

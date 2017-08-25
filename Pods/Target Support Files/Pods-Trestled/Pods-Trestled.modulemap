@@ -1,0 +1,6 @@
+framework module Pods_Trestled {
+  umbrella header "Pods-Trestled-umbrella.h"
+
+  export *
+  module * { export * }
+}

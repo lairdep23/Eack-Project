@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_Eack_AppWireframeVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_Eack_AppWireframeVersionString[];
+FOUNDATION_EXPORT double Pods_TrestledVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_TrestledVersionString[];
 

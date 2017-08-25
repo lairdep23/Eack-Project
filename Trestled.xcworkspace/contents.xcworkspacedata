@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Eack-AppWireframe.xcodeproj">
+      location = "group:/Users/Evan/Desktop/Trestled/Trestled.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Trestled.xcodeproj">
    </FileRef>
 </Workspace>
