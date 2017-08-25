@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '232810D6E3CBF5231B16B5AEB9DE8E29'
+               BlueprintIdentifier = 'BF034A92A4469F411892B20BDCDB40FA'
                BlueprintName = 'Pods-Trestled'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods-Trestled.framework'>
