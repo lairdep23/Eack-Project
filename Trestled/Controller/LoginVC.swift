@@ -12,14 +12,21 @@ import FBSDKLoginKit
 
 
 class LoginVC: UIViewController {
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.isHidden = true
     
 
     }
 
     @IBAction func facebookPressed(_ sender: Any) {
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
         let fbLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email", "user_friends"], from: self) { (result, error) in
             if let error = error {
@@ -51,6 +58,8 @@ class LoginVC: UIViewController {
                 
                 DataService.instance.createDBUser(uid: (user?.uid)!, userData: userData)
                 
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
                 self.dismiss(animated: true, completion: nil)
                 
                 

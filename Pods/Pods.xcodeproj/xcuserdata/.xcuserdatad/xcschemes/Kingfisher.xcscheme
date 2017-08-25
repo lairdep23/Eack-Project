@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D21579EBF0C974E4F5E4E3BE27B236C6'
-               BlueprintName = 'Pods-Trestled'
+               BlueprintIdentifier = '2F0C0F810568D3E82219429D9D870F04'
+               BlueprintName = 'Kingfisher'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods-Trestled.framework'>
+               BuildableName = 'Kingfisher.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

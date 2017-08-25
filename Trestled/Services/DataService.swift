@@ -9,8 +9,6 @@
 import Foundation
 import Firebase
 
-let DB_BASE = Database.database().reference()
-
 
 class DataService {
     

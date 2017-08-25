@@ -33,6 +33,7 @@
 		20BA9FEF1F2D4DA800FF1E00 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FEE1F2D4DA800FF1E00 /* Category.swift */; };
 		20BA9FF11F2D4E3700FF1E00 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FF01F2D4E3700FF1E00 /* CategoryCell.swift */; };
 		20BA9FF31F2D5FB700FF1E00 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FF21F2D5FB700FF1E00 /* TopView.swift */; };
+		20BE908E1F50D9FD008F6E3F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BE908D1F50D9FD008F6E3F /* Constants.swift */; };
 		F4F0AA9FEB82E0254F90B079 /* Pods_Trestled.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9D39B7CA72155B0D669321 /* Pods_Trestled.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		20BA9FEE1F2D4DA800FF1E00 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		20BA9FF01F2D4E3700FF1E00 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		20BA9FF21F2D5FB700FF1E00 /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		20BE908D1F50D9FD008F6E3F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		69D89966B42E38BD761730FB /* Pods_Eack_AppWireframe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eack_AppWireframe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9D39B7CA72155B0D669321 /* Pods_Trestled.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trestled.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3DED22CB94C161CF9CE5768 /* Pods-Trestled.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trestled.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trestled/Pods-Trestled.debug.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				20AB9D8F1F2CC80C004681B4 /* DataService.swift */,
+				20BE908D1F50D9FD008F6E3F /* Constants.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				2098CF001F2E85B700F82274 /* ActivityDetailVC.swift in Sources */,
 				20BA9FF11F2D4E3700FF1E00 /* CategoryCell.swift in Sources */,
 				20AB9D921F2CC86C004681B4 /* Activity.swift in Sources */,
+				20BE908E1F50D9FD008F6E3F /* Constants.swift in Sources */,
 				209F4DFB1F3F27BD00E206B8 /* KeyboardBoundView.swift in Sources */,
 				20AB9D901F2CC80C004681B4 /* DataService.swift in Sources */,
 				209EB01C1F3BDC0500FC5FC2 /* MessageView.swift in Sources */,

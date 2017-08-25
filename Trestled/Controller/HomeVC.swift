@@ -28,6 +28,9 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         collectionView.dataSource = self
         TabBar.delegate = self
         
+        let photoURL = USER?.photoURL
+        menuBtn.kf.setImage(with: photoURL, for: .normal)
+        
 //        let tap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.handleTap))
 //        self.view.addGestureRecognizer(tap)
         

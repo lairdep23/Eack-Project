@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FBSDKCoreKit
+import Kingfisher
 
 class SideMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -25,6 +26,10 @@ class SideMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         tableView.delegate = self
         tableView.dataSource = self
+        
+        username.text = USER?.displayName
+        let photoURL = USER?.photoURL
+        profileImage.kf.setImage(with: photoURL)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,7 +55,8 @@ class SideMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
-                print("Successfully Signed Out \(Auth.auth().currentUser?.displayName))")
+                print("Successfully Signed Out")
+                self.performSegue(withIdentifier: "logoutSegue", sender: nil)
                 
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)

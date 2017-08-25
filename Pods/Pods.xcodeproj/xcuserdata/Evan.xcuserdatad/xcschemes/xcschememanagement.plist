@@ -56,6 +56,11 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
+		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>Pods-Trestled.xcscheme</key>
 		<dict>
 			<key>isShown</key>
