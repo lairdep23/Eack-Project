@@ -9,5 +9,8 @@ target 'Trestled' do
 
 pod 'Alamofire'
 pod 'SwiftyJSON'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
 
 end

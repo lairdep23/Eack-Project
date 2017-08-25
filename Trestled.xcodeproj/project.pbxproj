@@ -17,6 +17,7 @@
 		20660E461F31431500AADF64 /* menuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20660E451F31431500AADF64 /* menuCell.swift */; };
 		2098CF001F2E85B700F82274 /* ActivityDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2098CEFF1F2E85B700F82274 /* ActivityDetailVC.swift */; };
 		2098D1921F4FA4E100A6DDFC /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2098D18F1F4FA1C300A6DDFC /* SWRevealViewController.m */; };
+		2098D1951F4FCC8700A6DDFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2098D1941F4FCC1200A6DDFC /* GoogleService-Info.plist */; };
 		209DC5931F2BE5ED0020923D /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5921F2BE5ED0020923D /* ShadowView.swift */; };
 		209DC5951F2BE60E0020923D /* ProfileImgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5941F2BE60E0020923D /* ProfileImgView.swift */; };
 		209DC5971F2BEDC00020923D /* JoinButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209DC5961F2BEDC00020923D /* JoinButton.swift */; };
@@ -50,6 +51,7 @@
 		2098D18E1F4FA1C300A6DDFC /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		2098D18F1F4FA1C300A6DDFC /* SWRevealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		2098D1911F4FA28600A6DDFC /* Trestled-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Trestled-Bridging-Header.h"; sourceTree = "<group>"; };
+		2098D1941F4FCC1200A6DDFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		209DC5921F2BE5ED0020923D /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		209DC5941F2BE60E0020923D /* ProfileImgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgView.swift; sourceTree = "<group>"; };
 		209DC5961F2BEDC00020923D /* JoinButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinButton.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				202A9D4D1F2AD837005257ED /* Assets.xcassets */,
 				202A9D4F1F2AD837005257ED /* LaunchScreen.storyboard */,
 				202A9D521F2AD837005257ED /* Info.plist */,
+				2098D1941F4FCC1200A6DDFC /* GoogleService-Info.plist */,
 			);
 			path = Trestled;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				202A9D511F2AD837005257ED /* LaunchScreen.storyboard in Resources */,
+				2098D1951F4FCC8700A6DDFC /* GoogleService-Info.plist in Resources */,
 				202A9D4E1F2AD837005257ED /* Assets.xcassets in Resources */,
 				202A9D4C1F2AD837005257ED /* Main.storyboard in Resources */,
 			);
