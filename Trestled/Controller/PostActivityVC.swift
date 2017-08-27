@@ -124,38 +124,57 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             return
         }
         
+        guard let image = activityImage.image, image != UIImage(named:"camera") else {
+            print("Evan: Must Select an Image")
+            return
+        }
+        
         let category: String = categoryArray[categoryPicker.selectedRow(inComponent: 0)]
         let timeCategory: String = timePickerArray[timePicker.selectedRow(inComponent: 0)]
         let exactTime: Date = datePicker.date
-            
         
         //Date Formatting
         
-        let date = Date()
-        
         let dateFormatter: DateFormatter = DateFormatter()
-        let dateShortFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, MMM d, h:mm a"
         
-        dateShortFormatter.dateFormat = "E, MMM d, h:mm a"
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        let exactDateString = dateFormatter.string(from: exactTime)
         
-        let postDateString = dateFormatter.string(from: date)
-        let exactDateString = dateShortFormatter.string(from: exactTime)
+        //Uploading Image to Firebase Storage
         
-        //Sending Activity Data to Firebase
-        
-        
-        let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": location , "photoURL": "https://photourl.com", "timeCategory": timeCategory, "exactTime": exactDateString, "numberOfPeople": numberOfP, "postDate": postDateString]
-        
-        DataService.instance.uploadActivity(withActivityData: postData, uploadComplete: { (isComplete) in
-            if isComplete {
-                self.postBtn.isEnabled = true
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                self.postBtn.isEnabled = true
-                print("Error uploading activity")
-            }
-        })
+        if let imgData = UIImageJPEGRepresentation(image, 0.2) {
+            
+            let imageUID = NSUUID().uuidString
+            let metaData = StorageMetadata()
+            metaData.contentType = "image/jpeg"
+            
+            DataService.instance.REF_PICS.child(imageUID).putData(imgData, metadata: metaData, completion: { (metaData, error) in
+                
+                if error != nil {
+                    print("Evan: unable to upload image \(error.debugDescription))")
+                } else {
+                    print("Evan: upload image successful")
+                    guard let downloadURL = metaData?.downloadURL()?.absoluteString else {
+                        print("Evan: couldn't get downloadURL")
+                        return
+                    }
+                    //Sending Activity Data to Firebase
+                    
+                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": location , "photoURL": downloadURL, "timeCategory": timeCategory, "exactTime": exactDateString, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp()]
+                    
+                    DataService.instance.uploadActivity(withActivityData: postData, uploadComplete: { (isComplete) in
+                        if isComplete {
+                            self.postBtn.isEnabled = true
+                            self.dismiss(animated: true, completion: nil)
+                        } else {
+                            self.postBtn.isEnabled = true
+                            print("Error uploading activity")
+                        }
+                    })
+                    
+                }
+            })
+        }
     }
     
     

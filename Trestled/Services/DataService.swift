@@ -17,6 +17,7 @@ class DataService {
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_ACTS = DB_BASE.child("activities")
+    private var _REF_PICS = FIR_STORAGE.child("activityPics")
     
     
     var REF_BASE: DatabaseReference {
@@ -29,6 +30,10 @@ class DataService {
     
     var REF_ACTS: DatabaseReference {
         return _REF_ACTS
+    }
+    
+    var REF_PICS: StorageReference {
+        return _REF_PICS
     }
     
     func createDBUser(uid: String, userData:Dictionary<String,Any>) {

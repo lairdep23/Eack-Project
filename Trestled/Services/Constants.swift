@@ -10,4 +10,5 @@ import Foundation
 import Firebase
 
 let DB_BASE = Database.database().reference()
+let FIR_STORAGE = Storage.storage().reference()
 let USER = Auth.auth().currentUser
