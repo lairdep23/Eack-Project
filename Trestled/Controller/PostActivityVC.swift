@@ -23,22 +23,26 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     @IBOutlet weak var mapView: MKMapView!
     
-    @IBOutlet weak var timePicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var numberOfPeoplePicker: UIPickerView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var postBtn: JoinButton!
+    
+    
     
     //Variables and Constants
     
     var imagePicker: UIImagePickerController!
     var placeAddress: String?
     let locationManager = CLLocationManager()
+    var firstTouch = true
+    let placePin = MKPointAnnotation()
     
     let numberArray = ["1","2","3","4","5","6","7","8","9","10","∞"]
     let categoryArray = ["Exercise", "Chill", "Shopping", "Food/Drink", "Sports", "Events", "Outdoors", "Learning", "Work"]
-    let timePickerArray = ["Now", "Later Today", "Tomorrow", "Far Out"]
     
     
 
@@ -47,8 +51,6 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         numberOfPeoplePicker.delegate = self
         numberOfPeoplePicker.dataSource = self
-        timePicker.delegate = self
-        timePicker.dataSource = self
         categoryPicker.delegate = self
         categoryPicker.dataSource = self
         activityDesc.delegate = self
@@ -56,6 +58,10 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
+        
+        firstTouch = true
+        activityIndicator.isHidden = true
+        activityIndicator.hidesWhenStopped = true
         
         activityLocation.delegate = self
         
@@ -65,16 +71,8 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
-            
-            let span = MKCoordinateSpanMake(0.05, 0.05)
-            let loc = CLLocationCoordinate2DMake(mapView.userLocation.coordinate.latitude, mapView.userLocation.coordinate.longitude)
-            let region = MKCoordinateRegionMake(loc, span)
-            
             mapView.showsUserLocation = true
-            mapView.centerCoordinate.latitude = mapView.userLocation.coordinate.latitude
-            mapView.centerCoordinate.longitude = mapView.userLocation.coordinate.longitude
             
-            mapView.setRegion(region, animated: true)
         }
 
         
@@ -102,9 +100,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             return numberArray.count
         } else if pickerView == categoryPicker {
             return categoryArray.count
-        } else if pickerView == timePicker {
-            return timePickerArray.count
-        } 
+        }
         
         return 0
         
@@ -115,8 +111,6 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             return numberArray[row]
         } else if pickerView == categoryPicker {
             return categoryArray[row]
-        } else if pickerView == timePicker {
-            return timePickerArray[row]
         }
         
         return "N/A"
@@ -125,45 +119,63 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBAction func postActivityPressed(_ sender: Any) {
         
         postBtn.isEnabled = false
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
         
         //Getting all content from fields
         
         guard let title = activityTitle.text, title != "" else {
             print("Evan: Need to enter title")
             self.postBtn.isEnabled = true
+            activityIndicator.stopAnimating()
             return
         }
         
         guard let desc = activityDesc.text, title != "" else {
             print("Evan: Need to enter desc")
             self.postBtn.isEnabled = true
+            activityIndicator.stopAnimating()
             return
         }
         
         guard let location = activityLocation.text, location != "" else {
             print("Evan: Need to enter location")
             self.postBtn.isEnabled = true
-            return
-        }
-        
-        guard let numberOfP: Int = Int(numberArray[numberOfPeoplePicker.selectedRow(inComponent: 0)]) else {
-            print("Evan: No number of people")
-            self.postBtn.isEnabled = true
+            activityIndicator.stopAnimating()
             return
         }
         
         guard let image = activityImage.image, image != UIImage(named:"camera") else {
             print("Evan: Must Select an Image")
+            self.postBtn.isEnabled = true
+            activityIndicator.stopAnimating()
             return
         }
         
         guard let exactAddress = placeAddress, exactAddress != "" else {
             print("Evan: Must select location")
+            self.postBtn.isEnabled = true
+            activityIndicator.stopAnimating()
+            return
+        }
+        
+        let selectedNumberOfPString = numberArray[numberOfPeoplePicker.selectedRow(inComponent: 0)]
+        var selectedNumberOfP: Int?
+        
+        if selectedNumberOfPString == "∞" {
+            selectedNumberOfP = 100000
+        } else {
+            selectedNumberOfP = Int(selectedNumberOfPString)
+        }
+        
+        guard let numberOfP: Int = selectedNumberOfP, numberOfP != nil else {
+            print("Evan: No number of people")
+            self.postBtn.isEnabled = true
+            activityIndicator.stopAnimating()
             return
         }
         
         let category: String = categoryArray[categoryPicker.selectedRow(inComponent: 0)]
-        let timeCategory: String = timePickerArray[timePicker.selectedRow(inComponent: 0)]
         let exactTime: Date = datePicker.date
         
         //Date Formatting
@@ -185,22 +197,29 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 
                 if error != nil {
                     print("Evan: unable to upload image \(error.debugDescription))")
+                    self.activityIndicator.stopAnimating()
+                    self.postBtn.isEnabled = true
                 } else {
                     print("Evan: upload image successful")
                     guard let downloadURL = metaData?.downloadURL()?.absoluteString else {
                         print("Evan: couldn't get downloadURL")
+                        self.activityIndicator.stopAnimating()
+                        self.postBtn.isEnabled = true
                         return
                     }
                     //Sending Activity Data to Firebase
                     
-                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "timeCategory": timeCategory, "exactTime": exactDateString, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp()]
+                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactDateString, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp()]
                     
                     DataService.instance.uploadActivity(withActivityData: postData, uploadComplete: { (isComplete) in
                         if isComplete {
                             self.postBtn.isEnabled = true
+                            self.activityIndicator.stopAnimating()
+                            self.firstTouch = true
                             self.dismiss(animated: true, completion: nil)
                         } else {
                             self.postBtn.isEnabled = true
+                            self.activityIndicator.stopAnimating()
                             print("Error uploading activity")
                         }
                     })
@@ -238,6 +257,26 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let userLoc: CLLocationCoordinate2D = manager.location?.coordinate else {
+            return
+        }
+        
+        let userLat = userLoc.latitude
+        let userLong = userLoc.longitude
+        
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let loc = CLLocationCoordinate2DMake(userLat, userLong)
+        let region = MKCoordinateRegionMake(loc, span)
+        
+        mapView.setRegion(region, animated: true)
+        
+        self.locationManager.stopUpdatingLocation()
+        
+    }
+    
+    
+    
     
     
 }
@@ -246,7 +285,10 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 extension PostActivityVC: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.text = ""
+        if firstTouch {
+            textView.text = ""
+            self.firstTouch = false
+        }
     }
 }
 
@@ -267,14 +309,14 @@ extension PostActivityVC: GMSAutocompleteViewControllerDelegate {
             guard let placemarks = placemarks, let location = placemarks.first?.location else {
                 return
             }
-            
-            self.mapView.centerCoordinate.latitude = location.coordinate.latitude
-            self.mapView.centerCoordinate.longitude = location.coordinate.longitude
-            
+    
             let span = MKCoordinateSpanMake(0.05, 0.05)
             let loc = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
             let region = MKCoordinateRegionMake(loc, span)
+            
+            self.placePin.coordinate = loc
             self.mapView.setRegion(region, animated: true)
+            self.mapView.addAnnotation(self.placePin)
 
         }
         
