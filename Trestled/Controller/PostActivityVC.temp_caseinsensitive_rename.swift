@@ -9,17 +9,22 @@
 import UIKit
 import MapKit
 
-class postActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var activityTitle: UITextField!
     @IBOutlet weak var activityLocation: UITextField!
+    @IBOutlet weak var activityDesc: UITextView!
+    @IBOutlet weak var activityImage: UIImageView!
+    
+    @IBOutlet weak var locationName: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var timePicker: UIPickerView!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
+    @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var numberOfPeoplePicker: UIPickerView!
     
-    let numberArray = ["1","2","3","4","5","6","7","8","9","10","Unlimited"]
+    let numberArray = ["1","2","3","4","5","6","7","8","9","10","∞"]
     
     
 
@@ -29,7 +34,7 @@ class postActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         numberOfPeoplePicker.delegate = self
         numberOfPeoplePicker.dataSource = self
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(postActivityVC.endEditing))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(PostActivityVC.endEditing))
         self.view.addGestureRecognizer(tap)
 
         
@@ -54,13 +59,15 @@ class postActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBAction func postActivityPressed(_ sender: Any) {
         
         if activityTitle.text != "" && activityLocation.text != "" {
-            let newActivity = Activity(user: "Evan Conroy", title: activityTitle.text!, loc: activityLocation.text!, time: "12 pm", userImgName: "EvanConroy.jpg", mainImage: "HollywoodHills.jpg")
-            
-            DataService.instance.activities.append(newActivity)
             dismiss(animated: true, completion: nil)
         }
         
         
+        
+    }
+    
+    
+    @IBAction func selectPhotoPressed(_ sender: Any) {
         
     }
     

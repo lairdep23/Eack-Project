@@ -35,6 +35,12 @@ class DataService {
         REF_USERS.child(uid).updateChildValues(userData)
     }
     
+    func uploadActivity(withActivityData data: Dictionary<String,Any>, uploadComplete: @escaping (_ status: Bool) ->()) {
+        
+        REF_ACTS.childByAutoId().updateChildValues(data)
+        uploadComplete(true)
+    }
+    
     var activities = [
         Activity(user: "Mykala Conroy", title: "Let's Go Hiking!", loc: "Hollywood Hills", time: "12:00 pm", userImgName: "M-Conroy.png", mainImage: "HollywoodHike.jpg"),
         Activity(user: "Evan Laird", title: "Meet For Drinks?", loc: "Broadway Bar", time: "11:00 pm", userImgName: "EvanLaird.png", mainImage: "BroadwayBar.jpg"),
