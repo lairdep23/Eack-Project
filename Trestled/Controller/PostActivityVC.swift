@@ -9,8 +9,10 @@
 import UIKit
 import MapKit
 import Firebase
+import GooglePlaces
+import CoreLocation
 
-class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
     
     //Outlets
     
@@ -31,7 +33,8 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     //Variables and Constants
     
     var imagePicker: UIImagePickerController!
-    
+    var placeAddress: String?
+    let locationManager = CLLocationManager()
     
     let numberArray = ["1","2","3","4","5","6","7","8","9","10","∞"]
     let categoryArray = ["Exercise", "Chill", "Shopping", "Food/Drink", "Sports", "Events", "Outdoors", "Learning", "Work"]
@@ -53,6 +56,31 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
+        
+        activityLocation.delegate = self
+        
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+            
+            let span = MKCoordinateSpanMake(0.05, 0.05)
+            let loc = CLLocationCoordinate2DMake(mapView.userLocation.coordinate.latitude, mapView.userLocation.coordinate.longitude)
+            let region = MKCoordinateRegionMake(loc, span)
+            
+            mapView.showsUserLocation = true
+            mapView.centerCoordinate.latitude = mapView.userLocation.coordinate.latitude
+            mapView.centerCoordinate.longitude = mapView.userLocation.coordinate.longitude
+            
+            mapView.setRegion(region, animated: true)
+        }
+
+        
+        
+        
+        
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(PostActivityVC.endEditing))
         self.view.addGestureRecognizer(tap)
@@ -129,6 +157,11 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             return
         }
         
+        guard let exactAddress = placeAddress, exactAddress != "" else {
+            print("Evan: Must select location")
+            return
+        }
+        
         let category: String = categoryArray[categoryPicker.selectedRow(inComponent: 0)]
         let timeCategory: String = timePickerArray[timePicker.selectedRow(inComponent: 0)]
         let exactTime: Date = datePicker.date
@@ -160,7 +193,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     }
                     //Sending Activity Data to Firebase
                     
-                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": location , "photoURL": downloadURL, "timeCategory": timeCategory, "exactTime": exactDateString, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp()]
+                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "timeCategory": timeCategory, "exactTime": exactDateString, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp()]
                     
                     DataService.instance.uploadActivity(withActivityData: postData, uploadComplete: { (isComplete) in
                         if isComplete {
@@ -177,14 +210,9 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
-    
     @IBAction func selectPhotoPressed(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
         
-    }
-    
-    @objc func endEditing() {
-        view.endEditing(true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -198,6 +226,18 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
+    @objc func endEditing() {
+        view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == activityLocation {
+            let autocompleteController = GMSAutocompleteViewController()
+            autocompleteController.delegate = self
+            present(autocompleteController, animated: true, completion: nil)
+        }
+    }
+    
     
     
 }
@@ -208,4 +248,56 @@ extension PostActivityVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.text = ""
     }
+}
+
+extension PostActivityVC: GMSAutocompleteViewControllerDelegate {
+    
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(place.name)")
+        print("Place address: \(place.formattedAddress)")
+        print("Place attributions: \(place.attributions)")
+        print("Place Lat and Long: \(place.coordinate.latitude) lat and \(place.coordinate.longitude)")
+        
+        activityLocation.text = place.name
+        placeAddress = place.formattedAddress
+        
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(placeAddress!) { (placemarks, error) in
+            guard let placemarks = placemarks, let location = placemarks.first?.location else {
+                return
+            }
+            
+            self.mapView.centerCoordinate.latitude = location.coordinate.latitude
+            self.mapView.centerCoordinate.longitude = location.coordinate.longitude
+            
+            let span = MKCoordinateSpanMake(0.05, 0.05)
+            let loc = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+            let region = MKCoordinateRegionMake(loc, span)
+            self.mapView.setRegion(region, animated: true)
+
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Evan Error: ", error.localizedDescription)
+    }
+    
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
 }

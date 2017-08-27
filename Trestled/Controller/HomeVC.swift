@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
+import Firebase
 
-class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITabBarDelegate {
+class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITabBarDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -18,6 +20,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     
     let DataServ = DataService()
     var postActivityVC: UIViewController?
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,14 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         collectionView.delegate = self
         collectionView.dataSource = self
         TabBar.delegate = self
+        
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
         
         let photoURL = USER?.photoURL
         menuBtn.kf.setImage(with: photoURL, for: .normal)
@@ -121,6 +132,15 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
 //            self.view.insertSubview((postActivityVC?.view)!, belowSubview: self.TabBar)
           
         }
+    }
+    
+    //Get Users Location
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let userLoc: CLLocationCoordinate2D = manager.location?.coordinate else {
+            return
+        }
+        print("User location = \(userLoc.latitude) and \(userLoc.longitude)")
     }
     
     
