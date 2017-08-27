@@ -19,7 +19,6 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var activityDesc: UITextView!
     @IBOutlet weak var activityImage: UIImageView!
     
-    @IBOutlet weak var locationName: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var timePicker: UIPickerView!
@@ -97,28 +96,66 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     @IBAction func postActivityPressed(_ sender: Any) {
         
-        if activityTitle.text != "" {
-            let date = Date()
-            let dateFormatter: DateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
-            let dateString = dateFormatter.string(from: date)
-            
-            postBtn.isEnabled = false
-            let postData: Dictionary<String,Any> = ["posterID": USER?.uid, "title": activityTitle.text!, "category": "Exercise", "desc": activityDesc.text!, "location": activityLocation.text!, "exactLocation": activityLocation.text!, "photoURL": "https://photourl.com", "time": "Later Today", "exactTime": "7:00pm", "numberOfPeople": 5, "postDate": dateString]
-            DataService.instance.uploadActivity(withActivityData: postData, uploadComplete: { (isComplete) in
-                
-                if isComplete {
-                    self.postBtn.isEnabled = true
-                    self.dismiss(animated: true, completion: nil)
-                } else {
-                    self.postBtn.isEnabled = true
-                    print("Error uploading activity")
-                }
-            })
+        postBtn.isEnabled = false
+        
+        //Getting all content from fields
+        
+        guard let title = activityTitle.text, title != "" else {
+            print("Evan: Need to enter title")
+            self.postBtn.isEnabled = true
+            return
         }
         
+        guard let desc = activityDesc.text, title != "" else {
+            print("Evan: Need to enter desc")
+            self.postBtn.isEnabled = true
+            return
+        }
+        
+        guard let location = activityLocation.text, location != "" else {
+            print("Evan: Need to enter location")
+            self.postBtn.isEnabled = true
+            return
+        }
+        
+        guard let numberOfP: Int = Int(numberArray[numberOfPeoplePicker.selectedRow(inComponent: 0)]) else {
+            print("Evan: No number of people")
+            self.postBtn.isEnabled = true
+            return
+        }
+        
+        let category: String = categoryArray[categoryPicker.selectedRow(inComponent: 0)]
+        let timeCategory: String = timePickerArray[timePicker.selectedRow(inComponent: 0)]
+        let exactTime: Date = datePicker.date
+            
+        
+        //Date Formatting
+        
+        let date = Date()
+        
+        let dateFormatter: DateFormatter = DateFormatter()
+        let dateShortFormatter: DateFormatter = DateFormatter()
+        
+        dateShortFormatter.dateFormat = "E, MMM d, h:mm a"
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        
+        let postDateString = dateFormatter.string(from: date)
+        let exactDateString = dateShortFormatter.string(from: exactTime)
+        
+        //Sending Activity Data to Firebase
         
         
+        let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": location , "photoURL": "https://photourl.com", "timeCategory": timeCategory, "exactTime": exactDateString, "numberOfPeople": numberOfP, "postDate": postDateString]
+        
+        DataService.instance.uploadActivity(withActivityData: postData, uploadComplete: { (isComplete) in
+            if isComplete {
+                self.postBtn.isEnabled = true
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                self.postBtn.isEnabled = true
+                print("Error uploading activity")
+            }
+        })
     }
     
     

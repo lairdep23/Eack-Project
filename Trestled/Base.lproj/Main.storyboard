@@ -913,7 +913,6 @@
                         <outlet property="activityTitle" destination="yRq-7K-8vo" id="Rop-KZ-DKL"/>
                         <outlet property="categoryPicker" destination="p50-3n-vGy" id="jMj-3w-hs6"/>
                         <outlet property="datePicker" destination="Dvs-bp-IDx" id="gdh-rP-yA0"/>
-                        <outlet property="locationName" destination="TBF-ua-a3P" id="m0h-Vj-fbQ"/>
                         <outlet property="mapView" destination="oo2-TR-4PH" id="eME-yr-GeL"/>
                         <outlet property="numberOfPeoplePicker" destination="jpI-DA-bLU" id="w7w-lu-noM"/>
                         <outlet property="postBtn" destination="b9h-x3-fiw" id="DKu-fQ-rdI"/>
