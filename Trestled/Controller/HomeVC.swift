@@ -16,9 +16,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var TabBar: UITabBar!
     
-    let DataServ = DataService()
     var postActivityVC: UIViewController?
     let locationManager = CLLocationManager()
     
@@ -50,6 +51,37 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.isHidden = false
+        
+        //Firebase Listener
+        
+        DataService.instance.REF_ACTS.observe(.value) { (snapshot) in
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                DataService.instance.activities.removeAll()
+                for snap in snapshots {
+                    if let activityDict = snap.value as? Dictionary<String,Any> {
+                        let key = snap.key
+                        if let posterID = activityDict["posterID"] as? String {
+                            DataService.instance.REF_USERS.child(posterID).observeSingleEvent(of: .value, with: { (snapshot) in
+                                if let posterDict = snapshot.value as? Dictionary<String,Any> {
+                                    let activity = Activity(postKey: key, postData: activityDict, posterData: posterDict)
+                                    print("Evan: \(activity.posterName)")
+                                    DataService.instance.activities.append(activity)
+                                    
+                                }
+                                self.activityIndicator.stopAnimating()
+                                self.tableView.reloadData()
+                            })
+                        } else {
+                            print("Evan: couldn't get posterID")
+                        }
+                    }
+                }
+            }
+        }
 
        
     }
@@ -64,13 +96,14 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataServ.getActivites().count
+        return DataService.instance.getActivities().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell") as? ActivityCell {
             
-            let activity = DataServ.getActivites()[indexPath.row]
+            let activity = DataService.instance.getActivities()[indexPath.row]
+            print("Evan: \(activity.title)")
             cell.updateViews(activity: activity)
         
             return cell
@@ -84,12 +117,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220
+        return 250
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCell {
-            let category = DataServ.getCategories()[indexPath.item]
+            let category = DataService.instance.getCategories()[indexPath.item]
             cell.updateViews(category: category)
             
             return cell
@@ -103,7 +136,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DataServ.getCategories().count
+        return DataService.instance.getCategories().count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

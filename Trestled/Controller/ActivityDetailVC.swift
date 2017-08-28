@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Kingfisher
+import CoreLocation
 
 class ActivityDetailVC: UIViewController {
 
@@ -19,6 +21,10 @@ class ActivityDetailVC: UIViewController {
     
     @IBOutlet weak var activityTime: UILabel!
     
+    @IBOutlet weak var activityDesc: UILabel!
+    
+    @IBOutlet weak var postedDate: UILabel!
+    
     @IBOutlet weak var createdUser: UILabel!
     
     @IBOutlet weak var numberToJoin: UILabel!
@@ -26,6 +32,8 @@ class ActivityDetailVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var activityAddress: UILabel!
+    
+    @IBOutlet weak var milesAway: UILabel!
     
     @IBOutlet weak var userCreatedImage: ProfileImgView!
     
@@ -36,16 +44,32 @@ class ActivityDetailVC: UIViewController {
         super.viewDidLoad()
         
         if activityRow != nil {
-            let activity = DataService.instance.getActivites()[activityRow!]
-            
-            numberToJoin.text = "2 More Can Join!"
-            activityImage.image = UIImage(named: (activity.mainImage))
+            let activity = DataService.instance.getActivities()[activityRow!]
+
+            numberToJoin.text = "\(activity.numberOfP!) More Can Join!"
+            activityImage.kf.setImage(with: URL(string: activity.mainImageURL))
             activityTime.text = activity.time
             activityTitle.text = activity.title
-            createdUser.text = activity.user
+            createdUser.text = activity.posterName
             activityAddress.text = activity.location
             activityLocation.text = activity.location
-            userCreatedImage.image = UIImage(named: (activity.userImgName))
+            userCreatedImage.kf.setImage(with: URL(string: activity.posterImgURL))
+            activityDesc.text = activity.description
+            
+            let geoCoder = CLGeocoder()
+            geoCoder.geocodeAddressString(activity.exactLocation) { (placemarks, error) in
+                guard let placemarks = placemarks, let location = placemarks.first?.location else {
+                    return
+                }
+                
+                let span = MKCoordinateSpanMake(0.1, 0.1)
+                let loc = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+                let region = MKCoordinateRegionMake(loc, span)
+                
+                self.mapView.setRegion(region, animated: true)
+                self.mapView.showsUserLocation = true
+            }
+            
         }
     }
     

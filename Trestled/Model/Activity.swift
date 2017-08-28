@@ -10,19 +10,71 @@ import Foundation
 
 struct Activity {
     
-    private(set) public var user: String
-    private(set) public var title: String
-    private(set) public var location: String
-    private(set) public var time: String
-    private(set) public var userImgName: String
-    private(set) public var mainImage: String
+    private(set) public var posterID: String!
+    private(set) public var title: String!
+    private(set) public var description: String!
+    private(set) public var location: String!
+    private(set) public var exactLocation: String!
+    private(set) public var time: String!
+    private(set) public var posterImgURL: String!
+    private(set) public var posterName: String!
+    private(set) public var mainImageURL: String!
+    private(set) public var numberOfP: Int!
+    private(set) public var postDate: Int!
+    private(set) public var category: String!
     
-    init(user: String, title: String, loc: String, time: String, userImgName: String, mainImage: String ) {
-        self.user = user
-        self.title = title
-        self.location = loc
-        self.time = time
-        self.userImgName = userImgName
-        self.mainImage = mainImage
+    private(set) public var postKey: String!
+    
+    
+    init(postKey: String, postData: Dictionary<String,Any>, posterData: Dictionary<String,Any>) {
+        self.postKey = postKey
+        
+        if let posterID = postData["posterID"] as? String {
+            self.posterID = posterID
+        }
+        
+        if let title = postData["title"] as? String {
+            self.title = title
+        }
+        
+        if let desc = postData["desc"] as? String {
+            self.description = desc
+        }
+        
+        if let loc = postData["location"] as? String {
+            self.location = loc
+        }
+        
+        if let exactLoc = postData["exactLocation"] as? String {
+            self.exactLocation = exactLoc
+        }
+        
+        if let time = postData["exactTime"] as? String {
+            self.time = time
+        }
+        
+        if let imageURL = postData["photoURL"] as? String {
+            self.mainImageURL = imageURL
+        }
+        
+        if let numberOfP = postData["numberOfPeople"] as? Int {
+            self.numberOfP = numberOfP
+        }
+        
+        if let category = postData["category"] as? String {
+            self.category = category
+        }
+        
+        if let postDate = postData["postDate"] as? Int {
+            self.postDate = postDate
+        }
+        
+        if let posterImage = posterData["profile_photo"] as? String {
+            self.posterImgURL = posterImage
+        }
+        
+        if let posterName = posterData["name"] as? String {
+            self.posterName = posterName
+        }
     }
 }

@@ -29,13 +29,13 @@ class MessageVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(MessageVC.endEditing))
         self.view.addGestureRecognizer(tap)
 
-        let activity = DataService.instance.getActivites()[activityIndex]
-        print(activity.user)
+        let activity = DataService.instance.getActivities()[activityIndex]
+        print(activity.posterID)
         
-        UserMessaging.text = activity.user
-        UserMessagingImage.image = UIImage(named: activity.userImgName)
-        YourRequestText.text = "You've requested to join \(activity.user) at \(activity.location) at \(activity.time) and awaiting a response"
-        acceptedRequestText.text = "\(activity.user) has accepted your join request!"
+        UserMessaging.text = activity.posterID
+        //UserMessagingImage.image = UIImage(named: activity.posterImageURL)
+        YourRequestText.text = "You've requested to join \(activity.posterID) at \(activity.location) at \(activity.time) and awaiting a response"
+        acceptedRequestText.text = "\(activity.posterID) has accepted your join request!"
 
     }
 
