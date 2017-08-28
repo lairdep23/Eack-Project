@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import Firebase
 
-class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITabBarDelegate, CLLocationManagerDelegate {
+class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
 
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -18,7 +18,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var TabBar: UITabBar!
+    //Tab Bar Buttons
+    
+    @IBOutlet weak var closestButton: UIButton!
+    @IBOutlet weak var closestImage: UIImageView!
+    @IBOutlet weak var closestText: UILabel!
+    
     
     var postActivityVC: UIViewController?
     let locationManager = CLLocationManager()
@@ -30,7 +35,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         tableView.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
-        TabBar.delegate = self
         
         self.locationManager.requestWhenInUseAuthorization()
         
@@ -154,19 +158,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         }
     }
     
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if item.title == "Post Activity" {
-            performSegue(withIdentifier: "toPostActivityVC", sender: nil)
-//            if postActivityVC == nil {
-//                var storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                postActivityVC = storyboard.instantiateViewController(withIdentifier: "postActivityVC") as! postActivityVC
-//            }
-//
-//            self.view.insertSubview((postActivityVC?.view)!, belowSubview: self.TabBar)
-          
-        }
-    }
-    
     //Get Users Location
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -175,6 +166,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         }
         print("User location = \(userLoc.latitude) and \(userLoc.longitude)")
     }
+    
+    @IBAction func closestBtnPressed(_ sender: Any) {
+        closestImage.isHighlighted = true
+        closestText.isHighlighted = true
+    }
+    
     
     
     
