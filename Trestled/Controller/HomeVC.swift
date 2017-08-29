@@ -11,6 +11,8 @@ import CoreLocation
 import Firebase
 
 class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
+    
+    //Outlet
 
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -24,9 +26,18 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     @IBOutlet weak var closestImage: UIImageView!
     @IBOutlet weak var closestText: UILabel!
     
+    @IBOutlet weak var endingImage: UIImageView!
+    @IBOutlet weak var endingText: UILabel!
+    
+    @IBOutlet weak var recentImage: UIImageView!
+    @IBOutlet weak var recentText: UILabel!
+    
+    //Variables and Constants
+    
     
     var postActivityVC: UIViewController?
     let locationManager = CLLocationManager()
+    var selectedCategoryCell = IndexPath(row: 0, section: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +47,13 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        collectionView.allowsSelection = true
+        collectionView.allowsMultipleSelection = false
+        
+        
+        
+        //LocationServices
+        
         self.locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
@@ -44,17 +62,20 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
             locationManager.startUpdatingLocation()
         }
         
+        //Profile photo
+        
         let photoURL = USER?.photoURL
         menuBtn.kf.setImage(with: photoURL, for: .normal)
         
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(HomeVC.handleTap))
-//        self.view.addGestureRecognizer(tap)
+        //Gestures
         
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        
+        //Loading
         
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
@@ -99,6 +120,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         self.view.endEditing(true)
     }
     
+    //TableView of Activities
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DataService.instance.getActivities().count
     }
@@ -108,7 +131,16 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
             
             let activity = DataService.instance.getActivities()[indexPath.row]
             print("Evan: \(activity.title)")
-            cell.updateViews(activity: activity)
+            if userCLLocation != nil {
+                cell.updateViews(activity: activity, userLocation: userCLLocation!)
+            } else {
+                print("Evan: Couldn't find userLocation")
+            }
+            //Setting the "All" Category Selected in collectionView
+            let index = IndexPath(row: 0, section: 0)
+            collectionView.selectItem(at: index, animated: false, scrollPosition: .top)
+            let firstSelected = collectionView.cellForItem(at: index)
+            showSelectedCell(firstSelected!)
         
             return cell
         }
@@ -121,8 +153,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return 237
     }
+    
+    //CollectionView of Categories
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as? CategoryCell {
@@ -143,12 +177,31 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         return DataService.instance.getCategories().count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedCategory = DataService.instance.getCategories()[indexPath.row].name
         
-        let activityRow = Int(indexPath.row)
+        if let oldCell = collectionView.cellForItem(at: selectedCategoryCell) {
+            oldCell.backgroundColor = UIColor.clear
+            selectedCategoryCell =  IndexPath(row: indexPath.row, section: 0)
+        }
         
-        performSegue(withIdentifier: "toActivityDetailVC", sender: activityRow)
+        if let newCell = collectionView.cellForItem(at: indexPath) {
+            showSelectedCell(newCell)
+        }
+        
+        //Query the tableView on selectedCategory
     }
+    
+    func showSelectedCell(_ cell: UICollectionViewCell) {
+        cell.layer.cornerRadius = 5.0
+        cell.clipsToBounds = true
+        cell.backgroundColor = UIColor.groupTableViewBackground
+    }
+    
+    
+    
+    
+    //Prepare for tableView segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let activityDetailsVC = segue.destination as? ActivityDetailVC {
@@ -158,22 +211,59 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let activityRow = Int(indexPath.row)
+        
+        performSegue(withIdentifier: "toActivityDetailVC", sender: activityRow)
+    }
+    
     //Get Users Location
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let userLoc: CLLocationCoordinate2D = manager.location?.coordinate else {
             return
         }
-        print("User location = \(userLoc.latitude) and \(userLoc.longitude)")
+        
+        userCLLocation = CLLocation(latitude: userLoc.latitude, longitude: userLoc.longitude)
+        locationManager.stopUpdatingLocation()
+        
+        
     }
+    
+    //Bottom Tab Bar Actions
     
     @IBAction func closestBtnPressed(_ sender: Any) {
         closestImage.isHighlighted = true
         closestText.isHighlighted = true
+        endingImage.isHighlighted = false
+        endingText.isHighlighted = false
+        recentImage.isHighlighted = false
+        recentText.isHighlighted = false
     }
     
+    @IBAction func endingBtnPressed(_ sender: Any) {
+        endingImage.isHighlighted = true
+        endingText.isHighlighted = true
+        recentImage.isHighlighted = false
+        recentText.isHighlighted = false
+        closestImage.isHighlighted = false
+        closestText.isHighlighted = false
+    }
     
+    @IBAction func recentBtnPressed(_ sender: Any) {
+        recentImage.isHighlighted = true
+        recentText.isHighlighted = true
+        closestImage.isHighlighted = false
+        closestText.isHighlighted = false
+        endingText.isHighlighted = false
+        endingImage.isHighlighted = false
+        
+    }
     
+    @IBAction func postBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "toPostActivityVC", sender: nil)
+    }
     
     
     

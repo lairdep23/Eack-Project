@@ -61,13 +61,32 @@ class ActivityDetailVC: UIViewController {
                 guard let placemarks = placemarks, let location = placemarks.first?.location else {
                     return
                 }
-                
+                //update mapView
                 let span = MKCoordinateSpanMake(0.1, 0.1)
                 let loc = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
                 let region = MKCoordinateRegionMake(loc, span)
                 
                 self.mapView.setRegion(region, animated: true)
                 self.mapView.showsUserLocation = true
+                
+                //update miles away label
+                
+                let activityLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                if userCLLocation != nil {
+                    let distanceToActivityMeters = userCLLocation?.distance(from: activityLocation)
+                    
+                    if distanceToActivityMeters! <= 1609.0 {
+                        //under a mile
+                        self.milesAway.text = "< 1 mile"
+                    } else {
+                        let distanceInMiles = distanceToActivityMeters! * 0.000621371
+                        let distanceString = String(format: "%.1f", distanceInMiles)
+                        self.milesAway.text = "\(distanceString) miles"
+                    }
+                } else {
+                    print("Evan: Need to turn on location")
+                }
+                
             }
             
         }

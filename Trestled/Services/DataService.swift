@@ -51,18 +51,22 @@ class DataService {
     func getActivities() -> [Activity] {
         return activities
     }
+    
+    let categoryArray = ["Exercise", "Chill", "Shopping", "Food/Drink", "Sports", "Events", "Outdoors", "Learning", "Work"]
 
     
     private let categories = [
+        Category(name: "All", imageName: "more.png"),
         Category(name: "Exercise", imageName: "exercise.png"),
         Category(name: "Chill", imageName: "chill.png"),
         Category(name: "Shopping", imageName: "shop.png"),
         Category(name: "Food/Drink", imageName: "fooddrink.png"),
+        Category(name: "Nightlife", imageName: "nightlife"),
         Category(name: "Sports", imageName: "sports.png"),
         Category(name: "Events", imageName: "entertain.png"),
         Category(name: "Outdoors", imageName: "outdoor.png"),
-        Category(name: "All", imageName: "more.png")
-    
+        Category(name: "Learning", imageName: "learning"),
+        Category(name: "Work", imageName: "work")
     ]
     
     func getCategories() -> [Category] {

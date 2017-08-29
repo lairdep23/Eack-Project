@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import CoreLocation
 
 class ActivityCell: UITableViewCell {
 
@@ -21,13 +22,39 @@ class ActivityCell: UITableViewCell {
     @IBOutlet weak var activityUserImage: ProfileImgView!
     
     
-    func updateViews(activity: Activity){
+    func updateViews(activity: Activity, userLocation: CLLocation){
         self.activityImage.kf.setImage(with: URL(string:activity.mainImageURL))
         self.activityTitle.text = activity.title
         self.activityTime.text = activity.time
         self.activityLocation.text = activity.location
         self.activityUserCreated.text = activity.posterName
         self.activityUserImage.kf.setImage(with: URL(string: activity.posterImgURL))
+        
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(activity.exactLocation) { (placemarks, error) in
+            if error == nil {
+                if let placemark = placemarks?.first {
+                    guard let activityLong = placemark.location?.coordinate.longitude else {return}
+                    guard let activityLat = placemark.location?.coordinate.latitude else {return}
+                    let activityLocation = CLLocation(latitude: activityLat, longitude: activityLong)
+                    let distanceToActivityMeters = userLocation.distance(from: activityLocation)
+                    
+                    if distanceToActivityMeters <= 1609 {
+                        //under a mile
+                        self.activityMilesAway.text = "< 1 mile"
+                    } else {
+                        let distanceInMiles = distanceToActivityMeters * 0.000621371
+                        let distanceString = String(format: "%.1f", distanceInMiles)
+                        self.activityMilesAway.text = "\(distanceString) miles"
+                    }
+                    
+                }
+            } else {
+                print("Evan: Couldn't get address to a Lat and Long")
+            }
+        }
+        
+        
     }
     
 
