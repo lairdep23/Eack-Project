@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201038081F5748ED002078E4 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201038071F5748ED002078E4 /* SearchVC.swift */; };
 		201FE6DA1F509A0D00EC7E0F /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FE6D91F509A0D00EC7E0F /* LoginVC.swift */; };
 		202A9D471F2AD837005257ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D461F2AD837005257ED /* AppDelegate.swift */; };
 		202A9D4C1F2AD837005257ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4A1F2AD837005257ED /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		15082673B5D9B01FBFD3D870 /* Pods-Eack-AppWireframe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eack-AppWireframe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eack-AppWireframe/Pods-Eack-AppWireframe.release.xcconfig"; sourceTree = "<group>"; };
+		201038071F5748ED002078E4 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		201FE6D91F509A0D00EC7E0F /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		202A9D431F2AD837005257ED /* Trestled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trestled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		202A9D461F2AD837005257ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				209EB01D1F3BDF1400FC5FC2 /* MessageVC.swift */,
 				209F4DFC1F3F3A6000E206B8 /* PostActivityVC.swift */,
 				201FE6D91F509A0D00EC7E0F /* LoginVC.swift */,
+				201038071F5748ED002078E4 /* SearchVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				201038081F5748ED002078E4 /* SearchVC.swift in Sources */,
 				201FE6DA1F509A0D00EC7E0F /* LoginVC.swift in Sources */,
 				204916CA1F4B70C000E199B3 /* ShareButton.swift in Sources */,
 				20BA9FF31F2D5FB700FF1E00 /* TopView.swift in Sources */,

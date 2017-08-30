@@ -17,8 +17,9 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableViewLabel: UILabel!
+    
     
     //Tab Bar Buttons
     
@@ -38,6 +39,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     var postActivityVC: UIViewController?
     let locationManager = CLLocationManager()
     var selectedCategoryCell = IndexPath(row: 0, section: 0)
+    var usersCity = "You"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,15 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = false
+        
+        //Setting Bottom Tab Bar
+        
+        closestImage.isHighlighted = true
+        closestText.isHighlighted = true
+        endingImage.isHighlighted = false
+        endingText.isHighlighted = false
+        recentImage.isHighlighted = false
+        recentText.isHighlighted = false
         
         
         
@@ -130,7 +141,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         if let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell") as? ActivityCell {
             
             let activity = DataService.instance.getActivities()[indexPath.row]
-            print("Evan: \(activity.title)")
+            //print("Evan: \(activity.title)")
             if userCLLocation != nil {
                 cell.updateViews(activity: activity, userLocation: userCLLocation!)
             } else {
@@ -226,9 +237,30 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         }
         
         userCLLocation = CLLocation(latitude: userLoc.latitude, longitude: userLoc.longitude)
+        getUsersCity(lat: userLoc.latitude, long: userLoc.longitude)
         locationManager.stopUpdatingLocation()
         
         
+    }
+    
+    func getUsersCity(lat: CLLocationDegrees, long: CLLocationDegrees) {
+        let userLoc = CLLocation(latitude: lat, longitude: long)
+        let geoCoder = CLGeocoder()
+        geoCoder.reverseGeocodeLocation(userLoc, completionHandler: { (placemarks, error) in
+            guard let placemarks = placemarks else {
+                return
+            }
+            
+            if let locDict = placemarks.first?.addressDictionary {
+                if let city = locDict["City"] as? String {
+                    self.usersCity = city
+                    self.tableViewLabel.text = "Activities Near \(self.usersCity)..."
+                } else {
+                    
+                }
+            }
+
+        })
     }
     
     //Bottom Tab Bar Actions
@@ -240,6 +272,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         endingText.isHighlighted = false
         recentImage.isHighlighted = false
         recentText.isHighlighted = false
+        
+        tableViewLabel.text = "Activities Near \(usersCity)..."
     }
     
     @IBAction func endingBtnPressed(_ sender: Any) {
@@ -249,6 +283,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         recentText.isHighlighted = false
         closestImage.isHighlighted = false
         closestText.isHighlighted = false
+        
+        tableViewLabel.text = "Activities Ending Soonest..."
     }
     
     @IBAction func recentBtnPressed(_ sender: Any) {
@@ -259,11 +295,22 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         endingText.isHighlighted = false
         endingImage.isHighlighted = false
         
+        tableViewLabel.text = "Recently Posted Activities..."
+        
+        let recentActivities: [Activity] = DataService.instance.getActivities().sorted { ($0.postDate > $1.postDate) }
+        DataService.instance.activities = recentActivities
+        tableView.reloadData()
+        
     }
     
     @IBAction func postBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: "toPostActivityVC", sender: nil)
     }
+    
+    
+    @IBAction func searchBtnPressed(_ sender: Any) {
+    }
+    
     
     
     

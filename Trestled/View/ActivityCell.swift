@@ -30,6 +30,19 @@ class ActivityCell: UITableViewCell {
         self.activityUserCreated.text = activity.posterName
         self.activityUserImage.kf.setImage(with: URL(string: activity.posterImgURL))
         
+        //Turning timestamp to PostDate
+        
+        if let postInterval = Double(activity.postDate) as? TimeInterval {
+            let postedDate = Date(timeIntervalSince1970: postInterval/1000)
+            let dateFormatter: DateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, h:mm a"
+            let exactDateString = "\(dateFormatter.string(from: postedDate))"
+            
+            self.activityPostedDate.text = exactDateString
+        }
+        
+        //Getting Distance to Activity
+        
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(activity.exactLocation) { (placemarks, error) in
             if error == nil {
