@@ -15,7 +15,7 @@ struct Activity {
     private(set) public var description: String!
     private(set) public var location: String!
     private(set) public var exactLocation: String!
-    private(set) public var time: String!
+    private(set) public var time: Int!
     private(set) public var posterImgURL: String!
     private(set) public var posterName: String!
     private(set) public var mainImageURL: String!
@@ -49,7 +49,7 @@ struct Activity {
             self.exactLocation = exactLoc
         }
         
-        if let time = postData["exactTime"] as? String {
+        if let time = postData["exactTime"] as? Int {
             self.time = time
         }
         

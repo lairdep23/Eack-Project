@@ -48,13 +48,32 @@ class ActivityDetailVC: UIViewController {
 
             numberToJoin.text = "\(activity.numberOfP!) More Can Join!"
             activityImage.kf.setImage(with: URL(string: activity.mainImageURL))
-            activityTime.text = activity.time
+            //activityTime.text = activity.time
             activityTitle.text = activity.title
             createdUser.text = activity.posterName
             activityAddress.text = activity.location
             activityLocation.text = activity.location
             userCreatedImage.kf.setImage(with: URL(string: activity.posterImgURL))
             activityDesc.text = activity.description
+            
+            if let activityInterval = Double(activity.time) as? TimeInterval {
+                let activityDate = Date(timeIntervalSince1970: activityInterval)
+                let dateFormatter: DateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "E, MMM d, h:mm a"
+                
+                let exactActivityDateString = dateFormatter.string(from: activityDate)
+                self.activityTime.text = exactActivityDateString
+                
+            }
+            
+            if let postInterval = Double(activity.postDate) as? TimeInterval {
+                let postedDate = Date(timeIntervalSince1970: postInterval/1000)
+                let dateFormatter: DateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MMM d, h:mm a"
+                let exactDateString = "\(dateFormatter.string(from: postedDate))"
+                
+                self.postedDate.text = exactDateString
+            }
             
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(activity.exactLocation) { (placemarks, error) in

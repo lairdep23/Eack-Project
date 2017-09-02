@@ -1360,11 +1360,11 @@
                                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="tHa-w8-jvc">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="tHa-w8-jvc">
                                                         <rect key="frame" x="0.0" y="53" width="359" height="20"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hollywood Hills, CA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FhN-67-brX">
-                                                                <rect key="frame" x="0.0" y="0.0" width="179.5" height="20"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="223" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="dtb-e5-wZC"/>
                                                                 </constraints>
@@ -1373,7 +1373,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- miles away" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdU-uu-Z7j">
-                                                                <rect key="frame" x="179.5" y="0.0" width="179.5" height="20"/>
+                                                                <rect key="frame" x="223" y="0.0" width="136" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="jSo-AJ-GLF"/>
                                                                 </constraints>

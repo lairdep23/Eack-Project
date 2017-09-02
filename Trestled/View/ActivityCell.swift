@@ -25,7 +25,7 @@ class ActivityCell: UITableViewCell {
     func updateViews(activity: Activity, userLocation: CLLocation){
         self.activityImage.kf.setImage(with: URL(string:activity.mainImageURL))
         self.activityTitle.text = activity.title
-        self.activityTime.text = activity.time
+        //self.activityTime.text = activity.time
         self.activityLocation.text = activity.location
         self.activityUserCreated.text = activity.posterName
         self.activityUserImage.kf.setImage(with: URL(string: activity.posterImgURL))
@@ -37,8 +37,18 @@ class ActivityCell: UITableViewCell {
             let dateFormatter: DateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM d, h:mm a"
             let exactDateString = "\(dateFormatter.string(from: postedDate))"
-            
+           
             self.activityPostedDate.text = exactDateString
+        }
+        
+        if let activityInterval = Double(activity.time) as? TimeInterval {
+            let activityDate = Date(timeIntervalSince1970: activityInterval)
+            let dateFormatter: DateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "E, MMM d, h:mm a"
+            
+            let exactActivityDateString = dateFormatter.string(from: activityDate)
+            self.activityTime.text = exactActivityDateString
+            
         }
         
         //Getting Distance to Activity

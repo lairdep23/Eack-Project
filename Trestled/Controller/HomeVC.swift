@@ -285,6 +285,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         closestText.isHighlighted = false
         
         tableViewLabel.text = "Activities Ending Soonest..."
+        
+        let endingActivities: [Activity] = DataService.instance.getActivities().sorted { ($0.time < $1.time)}
+        DataService.instance.activities = endingActivities
+        tableView.reloadData()
     }
     
     @IBAction func recentBtnPressed(_ sender: Any) {
