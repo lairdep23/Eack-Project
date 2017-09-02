@@ -61,5 +61,7 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Trestled needs to find the activities nearest you! :)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Trestled needs you to post a photo of your fun activity! :)</string>
 </dict>
 </plist>

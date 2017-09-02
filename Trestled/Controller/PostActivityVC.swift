@@ -11,6 +11,7 @@ import MapKit
 import Firebase
 import GooglePlaces
 import CoreLocation
+import Photos
 
 class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
     
@@ -230,7 +231,10 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     @IBAction func selectPhotoPressed(_ sender: Any) {
-        present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            present(imagePicker, animated: true, completion: nil)
+        }
+        
         
     }
     
