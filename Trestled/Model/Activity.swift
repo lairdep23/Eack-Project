@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreLocation
 
-struct Activity {
+class Activity {
     
     private(set) public var posterID: String!
     private(set) public var title: String!
@@ -24,6 +25,9 @@ struct Activity {
     private(set) public var category: String!
     
     private(set) public var postKey: String!
+    
+    private(set) public var distance: Double!
+    
     
     
     init(postKey: String, postData: Dictionary<String,Any>, posterData: Dictionary<String,Any>) {
@@ -47,6 +51,26 @@ struct Activity {
         
         if let exactLoc = postData["exactLocation"] as? String {
             self.exactLocation = exactLoc
+            
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(exactLoc) { (placemarks, error) in
+                if error == nil {
+                    if let placemark = placemarks?.first {
+                        guard let activityLong = placemark.location?.coordinate.longitude else {return}
+                        guard let activityLat = placemark.location?.coordinate.latitude else {return}
+                        let activityLocation = CLLocation(latitude: activityLat, longitude: activityLong)
+                        
+                        if userCLLocation != nil {
+                            let distanceToActivityMeters = userCLLocation?.distance(from: activityLocation)
+                            let distanceInMiles: Double = distanceToActivityMeters! * 0.000621371
+                        
+                            self.distance = distanceInMiles
+                        }
+                    }
+                } else {
+                    print("Evan: Couldn't get address to a Lat and Long")
+                }
+            }
         }
         
         if let time = postData["exactTime"] as? Int {
@@ -76,5 +100,6 @@ struct Activity {
         if let posterName = posterData["name"] as? String {
             self.posterName = posterName
         }
+        
     }
 }

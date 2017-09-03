@@ -30,6 +30,13 @@ class ActivityCell: UITableViewCell {
         self.activityUserCreated.text = activity.posterName
         self.activityUserImage.kf.setImage(with: URL(string: activity.posterImgURL))
         
+        if activity.distance != nil {
+            let activityMilesString = String(format: "%.1f", activity.distance)
+            self.activityMilesAway.text = "\(activityMilesString) miles"
+        }
+        
+        
+        
         //Turning timestamp to PostDate
         
         if let postInterval = Double(activity.postDate) as? TimeInterval {
@@ -50,34 +57,6 @@ class ActivityCell: UITableViewCell {
             self.activityTime.text = exactActivityDateString
             
         }
-        
-        //Getting Distance to Activity
-        
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(activity.exactLocation) { (placemarks, error) in
-            if error == nil {
-                if let placemark = placemarks?.first {
-                    guard let activityLong = placemark.location?.coordinate.longitude else {return}
-                    guard let activityLat = placemark.location?.coordinate.latitude else {return}
-                    let activityLocation = CLLocation(latitude: activityLat, longitude: activityLong)
-                    let distanceToActivityMeters = userLocation.distance(from: activityLocation)
-                    
-                    if distanceToActivityMeters <= 1609 {
-                        //under a mile
-                        self.activityMilesAway.text = "< 1 mile"
-                    } else {
-                        let distanceInMiles = distanceToActivityMeters * 0.000621371
-                        let distanceString = String(format: "%.1f", distanceInMiles)
-                        self.activityMilesAway.text = "\(distanceString) miles"
-                    }
-                    
-                }
-            } else {
-                print("Evan: Couldn't get address to a Lat and Long")
-            }
-        }
-        
-        
     }
     
 

@@ -71,8 +71,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
+            
         }
         
+
         //Profile photo
         
         let photoURL = USER?.photoURL
@@ -104,7 +106,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                             DataService.instance.REF_USERS.child(posterID).observeSingleEvent(of: .value, with: { (snapshot) in
                                 if let posterDict = snapshot.value as? Dictionary<String,Any> {
                                     let activity = Activity(postKey: key, postData: activityDict, posterData: posterDict)
-                                    print("Evan: \(activity.posterName)")
+                                    print("Evan: \(activity.title)")
                                     DataService.instance.activities.append(activity)
                                     
                                 }
@@ -117,7 +119,9 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                     }
                 }
             }
+            
         }
+        
 
        
     }
@@ -134,6 +138,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     //TableView of Activities
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Evan: \(DataService.instance.getActivities().count)")
         return DataService.instance.getActivities().count
     }
     
@@ -274,6 +279,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         recentText.isHighlighted = false
         
         tableViewLabel.text = "Activities Near \(usersCity)..."
+        
+        let closeActivities: [Activity] = DataService.instance.getActivities().sorted { ($0.distance! < $1.distance!)}
+        DataService.instance.activities = closeActivities
+        tableView.reloadData()
     }
     
     @IBAction func endingBtnPressed(_ sender: Any) {
@@ -313,6 +322,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     
     
     @IBAction func searchBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "toSearchVC", sender: nil)
     }
     
     
