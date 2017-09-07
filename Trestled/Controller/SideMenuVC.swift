@@ -19,7 +19,7 @@ class SideMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     
     
-    let menuArray = ["Messages", "Upcoming Activities", "History", "Settings", "User Agreement and Privacy", "Support", "Logout"]
+    let menuArray = ["Home", "Profile", "Messages", "My Activities", "Settings", "User Agreement and Privacy",  "Logout"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,8 @@ class SideMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if menuArray[indexPath.row] == "Logout" {
+        let selected = menuArray[indexPath.row]
+        if selected == "Logout" {
             let firebaseAuth = Auth.auth()
             do {
                 try firebaseAuth.signOut()
@@ -61,6 +62,18 @@ class SideMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)
             }
+        } else if selected == "Profile" {
+            self.performSegue(withIdentifier: "toProfileVC", sender: nil)
+        } else if selected == "My Activities" {
+            self.performSegue(withIdentifier: "toMyActivitiesVC", sender: nil)
+        } else if selected == "Messages" {
+            self.performSegue(withIdentifier: "toMessagesVC", sender: nil)
+        } else if selected == "Settings" {
+            self.performSegue(withIdentifier: "toSettingsVC", sender: nil)
+        } else if selected == "User Agreement and Privacy" {
+            self.performSegue(withIdentifier: "toPolicyVC", sender: nil)
+        } else {
+            self.performSegue(withIdentifier: "toHomeVC", sender: nil)
         }
     }
     

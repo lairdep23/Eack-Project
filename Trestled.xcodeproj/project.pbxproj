@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		201038081F5748ED002078E4 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201038071F5748ED002078E4 /* SearchVC.swift */; };
+		201E64451F61996A00C83B30 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E64441F61996A00C83B30 /* ProfileVC.swift */; };
+		201E64471F61998400C83B30 /* MessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E64461F61998400C83B30 /* MessagesVC.swift */; };
+		201E64491F6199AB00C83B30 /* MyActivitiesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E64481F6199AB00C83B30 /* MyActivitiesVC.swift */; };
+		201E644C1F6199C700C83B30 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E644B1F6199C700C83B30 /* SettingsVC.swift */; };
+		201E644E1F6199DC00C83B30 /* PolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E644D1F6199DC00C83B30 /* PolicyVC.swift */; };
 		201FE6DA1F509A0D00EC7E0F /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FE6D91F509A0D00EC7E0F /* LoginVC.swift */; };
 		202A9D471F2AD837005257ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D461F2AD837005257ED /* AppDelegate.swift */; };
 		202A9D4C1F2AD837005257ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4A1F2AD837005257ED /* Main.storyboard */; };
@@ -41,6 +46,11 @@
 /* Begin PBXFileReference section */
 		15082673B5D9B01FBFD3D870 /* Pods-Eack-AppWireframe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eack-AppWireframe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eack-AppWireframe/Pods-Eack-AppWireframe.release.xcconfig"; sourceTree = "<group>"; };
 		201038071F5748ED002078E4 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		201E64441F61996A00C83B30 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		201E64461F61998400C83B30 /* MessagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesVC.swift; sourceTree = "<group>"; };
+		201E64481F6199AB00C83B30 /* MyActivitiesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyActivitiesVC.swift; sourceTree = "<group>"; };
+		201E644B1F6199C700C83B30 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		201E644D1F6199DC00C83B30 /* PolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyVC.swift; sourceTree = "<group>"; };
 		201FE6D91F509A0D00EC7E0F /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		202A9D431F2AD837005257ED /* Trestled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trestled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		202A9D461F2AD837005257ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +177,7 @@
 		202A9D5B1F2ADBA5005257ED /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				201E64441F61996A00C83B30 /* ProfileVC.swift */,
 				202A9D601F2ADC62005257ED /* SideMenuVC.swift */,
 				202A9D621F2ADCDB005257ED /* HomeVC.swift */,
 				2098CEFF1F2E85B700F82274 /* ActivityDetailVC.swift */,
@@ -174,6 +185,10 @@
 				209F4DFC1F3F3A6000E206B8 /* PostActivityVC.swift */,
 				201FE6D91F509A0D00EC7E0F /* LoginVC.swift */,
 				201038071F5748ED002078E4 /* SearchVC.swift */,
+				201E64461F61998400C83B30 /* MessagesVC.swift */,
+				201E64481F6199AB00C83B30 /* MyActivitiesVC.swift */,
+				201E644B1F6199C700C83B30 /* SettingsVC.swift */,
+				201E644D1F6199DC00C83B30 /* PolicyVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -332,10 +347,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				201038081F5748ED002078E4 /* SearchVC.swift in Sources */,
+				201E644E1F6199DC00C83B30 /* PolicyVC.swift in Sources */,
 				201FE6DA1F509A0D00EC7E0F /* LoginVC.swift in Sources */,
 				204916CA1F4B70C000E199B3 /* ShareButton.swift in Sources */,
 				20BA9FF31F2D5FB700FF1E00 /* TopView.swift in Sources */,
 				2098CF001F2E85B700F82274 /* ActivityDetailVC.swift in Sources */,
+				201E64451F61996A00C83B30 /* ProfileVC.swift in Sources */,
 				20BA9FF11F2D4E3700FF1E00 /* CategoryCell.swift in Sources */,
 				20AB9D921F2CC86C004681B4 /* Activity.swift in Sources */,
 				20BE908E1F50D9FD008F6E3F /* Constants.swift in Sources */,
@@ -343,13 +360,16 @@
 				20AB9D901F2CC80C004681B4 /* DataService.swift in Sources */,
 				209EB01C1F3BDC0500FC5FC2 /* MessageView.swift in Sources */,
 				209DC5991F2BF05C0020923D /* ActivityCell.swift in Sources */,
+				201E644C1F6199C700C83B30 /* SettingsVC.swift in Sources */,
 				20BA9FED1F2D47CB00FF1E00 /* ProfileButton.swift in Sources */,
 				202A9D471F2AD837005257ED /* AppDelegate.swift in Sources */,
 				209DC5931F2BE5ED0020923D /* ShadowView.swift in Sources */,
+				201E64491F6199AB00C83B30 /* MyActivitiesVC.swift in Sources */,
 				209EB01E1F3BDF1400FC5FC2 /* MessageVC.swift in Sources */,
 				202A9D631F2ADCDB005257ED /* HomeVC.swift in Sources */,
 				2098D1921F4FA4E100A6DDFC /* SWRevealViewController.m in Sources */,
 				202A9D611F2ADC62005257ED /* SideMenuVC.swift in Sources */,
+				201E64471F61998400C83B30 /* MessagesVC.swift in Sources */,
 				209DC5951F2BE60E0020923D /* ProfileImgView.swift in Sources */,
 				209F4DFD1F3F3A6000E206B8 /* PostActivityVC.swift in Sources */,
 				209DC5971F2BEDC00020923D /* JoinButton.swift in Sources */,
