@@ -208,10 +208,13 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                                 if let posterID = activityDict["posterID"] as? String {
                                     DataService.instance.REF_USERS.child(posterID).observeSingleEvent(of: .value, with: { (snapshot) in
                                         if let posterDict = snapshot.value as? Dictionary<String,Any> {
-                                            let activity = Activity(postKey: key, postData: activityDict, posterData: posterDict)
-                                            DataService.instance.activities.append(activity)
+                                            let activity = Activity(postKey: key, userLoc: userCLLocation!, postData: activityDict, posterData: posterDict)
                                             
+                                            print(activity.distance)
+                                            DataService.instance.activities.append(activity)
                                             self.sortDataServiceActivities()
+                                            
+                                            
                                         }
                                         self.activityIndicator.stopAnimating()
                                         //self.tableView.reloadData()
@@ -392,11 +395,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                             if let posterID = activityDict["posterID"] as? String {
                                 DataService.instance.REF_USERS.child(posterID).observeSingleEvent(of: .value, with: { (snapshot) in
                                     if let posterDict = snapshot.value as? Dictionary<String,Any> {
-                                        let activity = Activity(postKey: key, postData: activityDict, posterData: posterDict)
-                                        print("Evan: \(activity.title)")
+                                        let activity = Activity(postKey: key, userLoc: userCLLocation!, postData: activityDict, posterData: posterDict)
+                                        
                                         DataService.instance.activities.append(activity)
                                         
                                         self.sortDataServiceActivities()
+                                        
                                         
                                     }
                                     self.activityIndicator.stopAnimating()

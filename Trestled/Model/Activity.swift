@@ -23,14 +23,12 @@ class Activity {
     private(set) public var numberOfP: Int!
     private(set) public var postDate: Int!
     private(set) public var category: String!
-    
     private(set) public var postKey: String!
-    
     private(set) public var distance: Double!
     
     
     
-    init(postKey: String, postData: Dictionary<String,Any>, posterData: Dictionary<String,Any>) {
+    init(postKey: String, userLoc: CLLocation, postData: Dictionary<String,Any>, posterData: Dictionary<String,Any>) {
         self.postKey = postKey
         
         if let posterID = postData["posterID"] as? String {
@@ -52,25 +50,35 @@ class Activity {
         if let exactLoc = postData["exactLocation"] as? String {
             self.exactLocation = exactLoc
             
-            let geocoder = CLGeocoder()
-            geocoder.geocodeAddressString(exactLoc) { (placemarks, error) in
-                if error == nil {
-                    if let placemark = placemarks?.first {
-                        guard let activityLong = placemark.location?.coordinate.longitude else {return}
-                        guard let activityLat = placemark.location?.coordinate.latitude else {return}
-                        let activityLocation = CLLocation(latitude: activityLat, longitude: activityLong)
-                        
-                        if userCLLocation != nil {
-                            let distanceToActivityMeters = userCLLocation?.distance(from: activityLocation)
-                            let distanceInMiles: Double = distanceToActivityMeters! * 0.000621371
-                        
-                            self.distance = distanceInMiles
-                        }
-                    }
-                } else {
-                    print("Evan: Couldn't get address to a Lat and Long")
-                }
-            }
+//            let geocoder = CLGeocoder()
+//            geocoder.geocodeAddressString(exactLoc) { (placemarks, error) in
+//                if error == nil {
+//                    if let placemark = placemarks?.first {
+//                        guard let activityLong = placemark.location?.coordinate.longitude else {return}
+//                        guard let activityLat = placemark.location?.coordinate.latitude else {return}
+//                        let activityLocation = CLLocation(latitude: activityLat, longitude: activityLong)
+//
+//                        let distanceToActivityMeters = userLoc.distance(from: activityLocation)
+//                        let distanceInMiles: Double = distanceToActivityMeters * 0.000621371
+//
+//                        self.distance = distanceInMiles
+//                    }
+//                } else {
+//                    print("Evan: Couldn't get address to a Lat and Long")
+//                }
+//            }
+        }
+        
+        
+        if let exactLat = postData["exactLat"] as? Double, let exactLong = postData["exactLong"] as? Double {
+            
+            let activityLocation = CLLocation(latitude: exactLat, longitude: exactLong)
+            
+            let distanceToActivityMeters = userLoc.distance(from: activityLocation)
+            let distanceInMiles: Double = distanceToActivityMeters * 0.000621371
+            
+            self.distance = distanceInMiles
+            
         }
         
         if let time = postData["exactTime"] as? Int {

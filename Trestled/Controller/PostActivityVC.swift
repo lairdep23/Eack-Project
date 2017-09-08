@@ -38,6 +38,8 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     var imagePicker: UIImagePickerController!
     var placeAddress: String?
+    var placeLat: Double?
+    var placeLong: Double?
     let locationManager = CLLocationManager()
     var firstTouch = true
     let placePin = MKPointAnnotation()
@@ -160,6 +162,9 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             return
         }
         
+        guard let exactLat = placeLat else {return}
+        guard let exactLong = placeLong else {return}
+        
         let selectedNumberOfPString = numberArray[numberOfPeoplePicker.selectedRow(inComponent: 0)]
         var selectedNumberOfP: Int?
         
@@ -212,7 +217,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     }
                     //Sending Activity Data to Firebase
                     
-                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactTimeInterval, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp()]
+                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactTimeInterval, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp(), "exactLat": exactLat, "exactLong": exactLong]
                     
                     DataService.instance.uploadActivity(withActivityData: postData, uploadComplete: { (isComplete) in
                         if isComplete {
@@ -309,6 +314,8 @@ extension PostActivityVC: GMSAutocompleteViewControllerDelegate {
         
         activityLocation.text = place.name
         placeAddress = place.formattedAddress
+        placeLat = place.coordinate.latitude
+        placeLong = place.coordinate.longitude
         
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(placeAddress!) { (placemarks, error) in
