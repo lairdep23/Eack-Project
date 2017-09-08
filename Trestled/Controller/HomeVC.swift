@@ -23,7 +23,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     
     //Tab Bar Buttons
     
-    @IBOutlet weak var closestButton: UIButton!
     @IBOutlet weak var closestImage: UIImageView!
     @IBOutlet weak var closestText: UILabel!
     
@@ -40,6 +39,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     let locationManager = CLLocationManager()
     var selectedCategoryCell = IndexPath(row: 0, section: 0)
     var usersCity = "You"
+    var bottomBarSelected = "Ending"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +54,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         
         //Setting Bottom Tab Bar
         
-        closestImage.isHighlighted = true
-        closestText.isHighlighted = true
-        endingImage.isHighlighted = false
-        endingText.isHighlighted = false
+        closestImage.isHighlighted = false
+        closestText.isHighlighted = false
+        endingImage.isHighlighted = true
+        endingText.isHighlighted = true
         recentImage.isHighlighted = false
         recentText.isHighlighted = false
         
@@ -73,6 +73,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
             locationManager.startUpdatingLocation()
             
         }
+        
         
 
         //Profile photo
@@ -94,31 +95,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         activityIndicator.hidesWhenStopped = true
         activityIndicator.isHidden = false
         
-        //Firebase Listener
-        
-        DataService.instance.REF_ACTS.observe(.value) { (snapshot) in
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                DataService.instance.activities.removeAll()
-                for snap in snapshots {
-                    if let activityDict = snap.value as? Dictionary<String,Any> {
-                        let key = snap.key
-                        if let posterID = activityDict["posterID"] as? String {
-                            DataService.instance.REF_USERS.child(posterID).observeSingleEvent(of: .value, with: { (snapshot) in
-                                if let posterDict = snapshot.value as? Dictionary<String,Any> {
-                                    let activity = Activity(postKey: key, postData: activityDict, posterData: posterDict)
-                                    print("Evan: \(activity.title)")
-                                    DataService.instance.activities.append(activity)
-                                    
-                                }
-                                self.activityIndicator.stopAnimating()
-                                self.tableView.reloadData()
-                            })
-                        } else {
-                            print("Evan: couldn't get posterID")
-                        }
-                    }
-                }
-            }
+        getAllFirebaseActivities { (success) in
+            //Setting the "All" Category Selected in collectionView
+            let index = IndexPath(row: 0, section: 0)
+            self.collectionView.selectItem(at: index, animated: false, scrollPosition: .top)
+            let firstSelected = self.collectionView.cellForItem(at: index)
+            self.showSelectedCell(firstSelected!)
             
         }
         
@@ -152,11 +134,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
             } else {
                 print("Evan: Couldn't find userLocation")
             }
-            //Setting the "All" Category Selected in collectionView
-            let index = IndexPath(row: 0, section: 0)
-            collectionView.selectItem(at: index, animated: false, scrollPosition: .top)
-            let firstSelected = collectionView.cellForItem(at: index)
-            showSelectedCell(firstSelected!)
         
             return cell
         }
@@ -181,7 +158,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
             
             return cell
         }
-        
         return CategoryCell()
     }
     
@@ -199,13 +175,68 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         if let oldCell = collectionView.cellForItem(at: selectedCategoryCell) {
             oldCell.backgroundColor = UIColor.clear
             selectedCategoryCell =  IndexPath(row: indexPath.row, section: 0)
+            if let newCell = collectionView.cellForItem(at: indexPath) {
+                showSelectedCell(newCell)
+            }
         }
         
-        if let newCell = collectionView.cellForItem(at: indexPath) {
-            showSelectedCell(newCell)
-        }
+        
         
         //Query the tableView on selectedCategory
+        
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+        
+        
+        if selectedCategory == "All" {
+            getAllFirebaseActivities(completion: { (success) in
+                
+            })
+            
+        } else {
+//            let firstIndex = IndexPath(row: 0, section: 0)
+//            collectionView.cellForItem(at: firstIndex)?.backgroundColor = UIColor.clear
+            let catQuery = DataService.instance.REF_ACTS.queryOrdered(byChild: "category").queryEqual(toValue: selectedCategory)
+            
+            catQuery.observe(.value) { (snapshot) in
+                if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                    DataService.instance.activities.removeAll()
+                    if snapshots.count != 0 {
+                        for snap in snapshots {
+                            if let activityDict = snap.value as? Dictionary<String,Any> {
+                                let key = snap.key
+                                if let posterID = activityDict["posterID"] as? String {
+                                    DataService.instance.REF_USERS.child(posterID).observeSingleEvent(of: .value, with: { (snapshot) in
+                                        if let posterDict = snapshot.value as? Dictionary<String,Any> {
+                                            let activity = Activity(postKey: key, postData: activityDict, posterData: posterDict)
+                                            DataService.instance.activities.append(activity)
+                                            
+                                            self.sortDataServiceActivities()
+                                        }
+                                        self.activityIndicator.stopAnimating()
+                                        //self.tableView.reloadData()
+                                    })
+                                } else {
+                                    print("Couldn't get posterID")
+                                }
+                            } else {
+                                print("Couldn't get activities")
+                            }
+                        }
+                        
+                    } else {
+                        print("No Activities")
+                        self.activityIndicator.stopAnimating()
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+        
+        
+        
+        
+        
     }
     
     func showSelectedCell(_ cell: UICollectionViewCell) {
@@ -280,9 +311,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         
         tableViewLabel.text = "Activities Near \(usersCity)..."
         
-        let closeActivities: [Activity] = DataService.instance.getActivities().sorted { ($0.distance! < $1.distance!)}
-        DataService.instance.activities = closeActivities
-        tableView.reloadData()
+        bottomBarSelected = "Closest"
+        
+        sortByClosest()
+        
     }
     
     @IBAction func endingBtnPressed(_ sender: Any) {
@@ -295,9 +327,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         
         tableViewLabel.text = "Activities Ending Soonest..."
         
-        let endingActivities: [Activity] = DataService.instance.getActivities().sorted { ($0.time < $1.time)}
-        DataService.instance.activities = endingActivities
-        tableView.reloadData()
+        bottomBarSelected = "Ending"
+        
+        sortByEnding()
+        
     }
     
     @IBAction func recentBtnPressed(_ sender: Any) {
@@ -310,9 +343,9 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         
         tableViewLabel.text = "Recently Posted Activities..."
         
-        let recentActivities: [Activity] = DataService.instance.getActivities().sorted { ($0.postDate > $1.postDate) }
-        DataService.instance.activities = recentActivities
-        tableView.reloadData()
+        bottomBarSelected = "Recent"
+        
+        sortByRecent()
         
     }
     
@@ -323,6 +356,77 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     
     @IBAction func searchBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: "toSearchVC", sender: nil)
+    }
+    
+    func sortByEnding() {
+        
+        let endingActivities: [Activity] = DataService.instance.getActivities().sorted { ($0.time < $1.time)}
+        DataService.instance.activities = endingActivities
+        tableView.reloadData()
+        
+    }
+    
+    func sortByClosest(){
+        let closeActivities: [Activity] = DataService.instance.getActivities().sorted { ($0.distance! < $1.distance!)}
+        DataService.instance.activities = closeActivities
+        tableView.reloadData()
+    }
+    
+    func sortByRecent(){
+        let recentActivities: [Activity] = DataService.instance.getActivities().sorted { ($0.postDate > $1.postDate) }
+        DataService.instance.activities = recentActivities
+        tableView.reloadData()
+        
+    }
+    
+    func getAllFirebaseActivities(completion: @escaping CompletionHandler){
+        //Firebase Listener
+        
+        DataService.instance.REF_ACTS.observe(.value) { (snapshot) in
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                DataService.instance.activities.removeAll()
+                if snapshots.count != 0 {
+                    for snap in snapshots {
+                        if let activityDict = snap.value as? Dictionary<String,Any> {
+                            let key = snap.key
+                            if let posterID = activityDict["posterID"] as? String {
+                                DataService.instance.REF_USERS.child(posterID).observeSingleEvent(of: .value, with: { (snapshot) in
+                                    if let posterDict = snapshot.value as? Dictionary<String,Any> {
+                                        let activity = Activity(postKey: key, postData: activityDict, posterData: posterDict)
+                                        print("Evan: \(activity.title)")
+                                        DataService.instance.activities.append(activity)
+                                        
+                                        self.sortDataServiceActivities()
+                                        
+                                    }
+                                    self.activityIndicator.stopAnimating()
+                                    //self.tableView.reloadData()
+                                })
+                            } else {
+                                print("Evan: couldn't get posterID")
+                            }
+                        }
+                    }
+                } else {
+                    print("No Activities")
+                    self.activityIndicator.stopAnimating()
+                    self.tableView.reloadData()
+                }
+                completion(true)
+            }
+            
+        }
+        
+    }
+    
+    func sortDataServiceActivities() {
+        if self.bottomBarSelected == "Ending" {
+            self.sortByEnding()
+        } else if self.bottomBarSelected == "Recent" {
+            self.sortByRecent()
+        } else if self.bottomBarSelected == "Closest" {
+            self.sortByClosest()
+        }
     }
     
     
