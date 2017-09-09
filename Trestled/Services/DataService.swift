@@ -72,4 +72,11 @@ class DataService {
     func getCategories() -> [Category] {
         return categories
     }
+    
+    func showAlert(title: String, message: String) -> UIAlertController {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        
+        return alertController
+    }
 }

@@ -129,6 +129,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         guard let title = activityTitle.text, title != "" else {
             print("Evan: Need to enter title")
+            showMissingAlert(message: "Oops! Looks like you missed the title field!")
             self.postBtn.isEnabled = true
             activityIndicator.stopAnimating()
             return
@@ -136,6 +137,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         guard let desc = activityDesc.text, title != "" else {
             print("Evan: Need to enter desc")
+            showMissingAlert(message: "Oops! Looks like you missed the description field!")
             self.postBtn.isEnabled = true
             activityIndicator.stopAnimating()
             return
@@ -143,6 +145,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         guard let location = activityLocation.text, location != "" else {
             print("Evan: Need to enter location")
+            showMissingAlert(message: "Oops! Looks like you missed choosing a location!")
             self.postBtn.isEnabled = true
             activityIndicator.stopAnimating()
             return
@@ -150,6 +153,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         guard let image = activityImage.image, image != UIImage(named:"camera") else {
             print("Evan: Must Select an Image")
+            showMissingAlert(message: "Oops! Looks like you missed selecting an image!")
             self.postBtn.isEnabled = true
             activityIndicator.stopAnimating()
             return
@@ -157,6 +161,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         guard let exactAddress = placeAddress, exactAddress != "" else {
             print("Evan: Must select location")
+            showBasicAlert(title: "Oops!", message: "Looks like we couldn't get the address off of the selected location.")
             self.postBtn.isEnabled = true
             activityIndicator.stopAnimating()
             return
@@ -176,6 +181,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         guard let numberOfP: Int = selectedNumberOfP, numberOfP != nil else {
             print("Evan: No number of people")
+            showMissingAlert(message: "Oops! Looks like you missed choosing a number of people to join you!")
             self.postBtn.isEnabled = true
             activityIndicator.stopAnimating()
             return
@@ -205,12 +211,14 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 
                 if error != nil {
                     print("Evan: unable to upload image \(error.debugDescription))")
+                    self.showBasicAlert(title: "Oops!", message: "Looks like we had an issue uploading your image!")
                     self.activityIndicator.stopAnimating()
                     self.postBtn.isEnabled = true
                 } else {
                     print("Evan: upload image successful")
                     guard let downloadURL = metaData?.downloadURL()?.absoluteString else {
                         print("Evan: couldn't get downloadURL")
+                        self.showBasicAlert(title: "Oops!", message: "Looks like we couldn't get your image it's own url!")
                         self.activityIndicator.stopAnimating()
                         self.postBtn.isEnabled = true
                         return
@@ -229,6 +237,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                             self.postBtn.isEnabled = true
                             self.activityIndicator.stopAnimating()
                             print("Error uploading activity")
+                            self.showBasicAlert(title: "Oops!", message: "Looks like we had an issue uploading your activity!")
                         }
                     })
                     
@@ -251,6 +260,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             activityImage.image = image
         } else {
             print("Evan: Image Couldn't be selected")
+            showBasicAlert(title: "Oops!", message: "Looks like an image couldn't be selected!")
         }
         
         imagePicker.dismiss(animated: true, completion: nil)
@@ -284,6 +294,18 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         self.locationManager.stopUpdatingLocation()
         
+    }
+    
+    func showMissingAlert(message: String) {
+        let alert = DataService.instance.showAlert(title: "Please Fill All Fields :)", message: message)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    func showBasicAlert(title: String, message: String) {
+        let alert = DataService.instance.showAlert(title: title, message: message)
+        present(alert, animated: true, completion: nil)
     }
     
     

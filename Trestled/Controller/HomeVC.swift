@@ -40,6 +40,9 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     var selectedCategoryCell = IndexPath(row: 0, section: 0)
     var usersCity = "You"
     var bottomBarSelected = "Ending"
+    var categorySelected = "All"
+    
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +54,17 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = false
+        
+        //Setting up refresh control on TableView
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Gathering Activities Perfect For You")
+        refreshControl.addTarget(self, action: #selector(HomeVC.refreshTableView(_:)), for: .valueChanged)
         
         //Setting Bottom Tab Bar
         
@@ -91,9 +105,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         
         //Loading
         
-        activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.isHidden = false
         
         getAllFirebaseActivities { (success) in
             //Setting the "All" Category Selected in collectionView
@@ -179,66 +191,9 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                 showSelectedCell(newCell)
             }
         }
-        
-        
-        
         //Query the tableView on selectedCategory
         
-        activityIndicator.startAnimating()
-        activityIndicator.isHidden = false
-        
-        
-        if selectedCategory == "All" {
-            getAllFirebaseActivities(completion: { (success) in
-                
-            })
-            
-        } else {
-//            let firstIndex = IndexPath(row: 0, section: 0)
-//            collectionView.cellForItem(at: firstIndex)?.backgroundColor = UIColor.clear
-            let catQuery = DataService.instance.REF_ACTS.queryOrdered(byChild: "category").queryEqual(toValue: selectedCategory)
-            
-            catQuery.observe(.value) { (snapshot) in
-                if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                    DataService.instance.activities.removeAll()
-                    if snapshots.count != 0 {
-                        for snap in snapshots {
-                            if let activityDict = snap.value as? Dictionary<String,Any> {
-                                let key = snap.key
-                                if let posterID = activityDict["posterID"] as? String {
-                                    DataService.instance.REF_USERS.child(posterID).observeSingleEvent(of: .value, with: { (snapshot) in
-                                        if let posterDict = snapshot.value as? Dictionary<String,Any> {
-                                            let activity = Activity(postKey: key, userLoc: userCLLocation!, postData: activityDict, posterData: posterDict)
-                                            
-                                            print(activity.distance)
-                                            DataService.instance.activities.append(activity)
-                                            self.sortDataServiceActivities()
-                                            
-                                            
-                                        }
-                                        self.activityIndicator.stopAnimating()
-                                        //self.tableView.reloadData()
-                                    })
-                                } else {
-                                    print("Couldn't get posterID")
-                                }
-                            } else {
-                                print("Couldn't get activities")
-                            }
-                        }
-                        
-                    } else {
-                        print("No Activities")
-                        self.activityIndicator.stopAnimating()
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-        }
-        
-        
-        
-        
+        getFirebaseActivitiesByCategory(selectedCategory)
         
     }
     
@@ -383,6 +338,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     }
     
     func getAllFirebaseActivities(completion: @escaping CompletionHandler){
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
         //Firebase Listener
         
         DataService.instance.REF_ACTS.observe(.value) { (snapshot) in
@@ -413,6 +370,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                     }
                 } else {
                     print("No Activities")
+                    self.showNoActivitiesAlert(title: "Oh no!", message: "Looks like there are no activities in your area! Go to settings to increase your distance or try back again later!")
                     self.activityIndicator.stopAnimating()
                     self.tableView.reloadData()
                 }
@@ -423,6 +381,68 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         
     }
     
+    func getFirebaseActivitiesByCategory(_ selectedCategory: String) {
+        
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+        
+        if selectedCategory == "All" {
+            getAllFirebaseActivities(completion: { (success) in
+                
+            })
+            
+        } else {
+            let catQuery = DataService.instance.REF_ACTS.queryOrdered(byChild: "category").queryEqual(toValue: selectedCategory)
+            
+            catQuery.observe(.value) { (snapshot) in
+                if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                    DataService.instance.activities.removeAll()
+                    if snapshots.count != 0 {
+                        for snap in snapshots {
+                            if let activityDict = snap.value as? Dictionary<String,Any> {
+                                let key = snap.key
+                                if let posterID = activityDict["posterID"] as? String {
+                                    DataService.instance.REF_USERS.child(posterID).observeSingleEvent(of: .value, with: { (snapshot) in
+                                        if let posterDict = snapshot.value as? Dictionary<String,Any> {
+                                            let activity = Activity(postKey: key, userLoc: userCLLocation!, postData: activityDict, posterData: posterDict)
+                                            
+                                            print(activity.distance)
+                                            DataService.instance.activities.append(activity)
+                                            self.sortDataServiceActivities()
+                                            
+                                            
+                                        }
+                                        self.activityIndicator.stopAnimating()
+                                        //self.tableView.reloadData()
+                                    })
+                                } else {
+                                    print("Couldn't get posterID")
+                                }
+                            } else {
+                                print("Couldn't get activities")
+                            }
+                        }
+                        
+                    } else {
+                        print("No Activities")
+                        self.showNoActivitiesAlert(title: "Oh no!", message: "Looks like there are no \(selectedCategory.lowercased()) activities in your area. Go to settings to increase your distance!")
+                        self.activityIndicator.stopAnimating()
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    @objc private func refreshTableView(_ sender: Any) {
+        getAllFirebaseActivities { (success) in
+            if success {
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
     func sortDataServiceActivities() {
         if self.bottomBarSelected == "Ending" {
             self.sortByEnding()
@@ -431,6 +451,15 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         } else if self.bottomBarSelected == "Closest" {
             self.sortByClosest()
         }
+    }
+    
+    func showNoActivitiesAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { (pressed) in
+            self.performSegue(withIdentifier: "toSearchVC", sender: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
     
     

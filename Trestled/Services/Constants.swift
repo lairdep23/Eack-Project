@@ -16,6 +16,7 @@ let DB_BASE = Database.database().reference()
 let FIR_STORAGE = Storage.storage().reference()
 let USER = Auth.auth().currentUser
 var userCLLocation: CLLocation?
+let TrestledOrange = UIColor(red: 0.937, green: 0.424, blue: 0.00, alpha: 1.00)
 
 //Completion Handler
 

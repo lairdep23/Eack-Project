@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 import Kingfisher
+import Social
 
 class SideMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -75,6 +76,20 @@ class SideMenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             self.performSegue(withIdentifier: "toHomeVC", sender: nil)
         }
+    }
+    
+    @IBAction func postToFB(_ sender: UIButton!) {
+        let post = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        post?.add(#imageLiteral(resourceName: "TrestledLogo"))
+        post?.setInitialText("Join me on Trestled and meet new friends with fun activities!")
+        self.present(post!, animated: true, completion: nil)
+    }
+    
+    @IBAction func postToTwitter(_ sender: UIButton!) {
+        let post = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+        post?.add(#imageLiteral(resourceName: "TrestledLogo"))
+        post?.setInitialText("Join me on Trestled and meet new friends with fun activities!")
+        self.present(post!, animated: true, completion: nil)
     }
     
 }

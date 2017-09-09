@@ -11,7 +11,7 @@ import MapKit
 import Kingfisher
 import CoreLocation
 
-class ActivityDetailVC: UIViewController {
+class ActivityDetailVC: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var activityImage: UIImageView!
     
@@ -42,6 +42,8 @@ class ActivityDetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapView.delegate = self
         
         if activityRow != nil {
             let activity = DataService.instance.getActivities()[activityRow!]
@@ -84,9 +86,12 @@ class ActivityDetailVC: UIViewController {
                 let span = MKCoordinateSpanMake(0.1, 0.1)
                 let loc = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
                 let region = MKCoordinateRegionMake(loc, span)
+                let circle = MKCircle(center: loc, radius: 4000)
                 
                 self.mapView.setRegion(region, animated: true)
                 self.mapView.showsUserLocation = true
+                self.mapView.add(circle)
+                
                 
                 //update miles away label
                 
@@ -115,6 +120,15 @@ class ActivityDetailVC: UIViewController {
         
         self.activityRow = activityRow
     }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let circleView = MKCircleRenderer(overlay: overlay)
+        //circleView.strokeColor = UIColor.orange.withAlphaComponent(0.6)
+        circleView.fillColor = UIColor.orange.withAlphaComponent(0.4)
+        return circleView
+    }
+    
+    
     
     @IBAction func requestToJoinPressed(_ sender: Any) {
         if activityRow != nil {
