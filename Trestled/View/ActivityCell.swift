@@ -25,7 +25,6 @@ class ActivityCell: UITableViewCell {
     func updateViews(activity: Activity, userLocation: CLLocation){
         self.activityImage.kf.setImage(with: URL(string:activity.mainImageURL))
         self.activityTitle.text = activity.title
-        //self.activityTime.text = activity.time
         self.activityLocation.text = activity.location
         self.activityUserCreated.text = activity.posterName
         self.activityUserImage.kf.setImage(with: URL(string: activity.posterImgURL))

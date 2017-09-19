@@ -50,24 +50,6 @@ class Activity {
         
         if let exactLoc = postData["exactLocation"] as? String {
             self.exactLocation = exactLoc
-            
-//            let geocoder = CLGeocoder()
-//            geocoder.geocodeAddressString(exactLoc) { (placemarks, error) in
-//                if error == nil {
-//                    if let placemark = placemarks?.first {
-//                        guard let activityLong = placemark.location?.coordinate.longitude else {return}
-//                        guard let activityLat = placemark.location?.coordinate.latitude else {return}
-//                        let activityLocation = CLLocation(latitude: activityLat, longitude: activityLong)
-//
-//                        let distanceToActivityMeters = userLoc.distance(from: activityLocation)
-//                        let distanceInMiles: Double = distanceToActivityMeters * 0.000621371
-//
-//                        self.distance = distanceInMiles
-//                    }
-//                } else {
-//                    print("Evan: Couldn't get address to a Lat and Long")
-//                }
-//            }
         }
         
         
@@ -108,10 +90,6 @@ class Activity {
         
         if let posterName = posterData["name"] as? String {
             self.posterName = posterName
-        }
-        
-        if let active = postData["active"] as? String {
-            self.active = active
         }
         
     }

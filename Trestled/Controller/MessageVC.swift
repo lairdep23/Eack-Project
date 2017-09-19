@@ -33,7 +33,6 @@ class MessageVC: UIViewController {
         print(activity.posterID)
         
         UserMessaging.text = activity.posterID
-        //UserMessagingImage.image = UIImage(named: activity.posterImageURL)
         YourRequestText.text = "You've requested to join \(activity.posterID) at \(activity.location) at \(activity.time) and awaiting a response"
         acceptedRequestText.text = "\(activity.posterID) has accepted your join request!"
 

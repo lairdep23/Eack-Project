@@ -17,7 +17,9 @@ class DataService {
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_ACTS = DB_BASE.child("activities")
+    private var _REF_OLD_ACTS = DB_BASE.child("old-activities")
     private var _REF_PICS = FIR_STORAGE.child("activityPics")
+    
     
     
     var REF_BASE: DatabaseReference {
@@ -32,6 +34,10 @@ class DataService {
         return _REF_ACTS
     }
     
+    var REF_OLD_ACTS: DatabaseReference {
+        return _REF_OLD_ACTS
+    }
+    
     var REF_PICS: StorageReference {
         return _REF_PICS
     }
@@ -43,6 +49,11 @@ class DataService {
     func uploadActivity(withActivityData data: Dictionary<String,Any>, uploadComplete: @escaping (_ status: Bool) ->()) {
         
         REF_ACTS.childByAutoId().updateChildValues(data)
+        uploadComplete(true)
+    }
+    
+    func moveToOldActivity(withActivityData data: Dictionary<String,Any>, key: String, uploadComplete: @escaping (_ status: Bool) -> ()) {
+        REF_OLD_ACTS.child(key).updateChildValues(data)
         uploadComplete(true)
     }
     

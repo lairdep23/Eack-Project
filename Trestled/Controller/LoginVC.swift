@@ -54,7 +54,7 @@ class LoginVC: UIViewController {
                 }
                 
                 let profPhoto = user?.photoURL?.absoluteString
-                let userData = ["provider": "Facebook", "email": user?.email, "profile_photo": profPhoto, "name": user?.displayName ] as [String : Any]
+                let userData = ["provider": "Facebook", "email": user?.email, "profile_photo": profPhoto, "name": user?.displayName] as [String : Any]
                 
                 DataService.instance.createDBUser(uid: (user?.uid)!, userData: userData)
                 

@@ -221,7 +221,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     }
                     //Sending Activity Data to Firebase
                     
-                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactTimeInterval, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp(), "exactLat": exactLat, "exactLong": exactLong, "active": "yes"]
+                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactTimeInterval, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp(), "exactLat": exactLat, "exactLong": exactLong]
                     
                     DataService.instance.uploadActivity(withActivityData: postData, uploadComplete: { (isComplete) in
                         if isComplete {
@@ -326,8 +326,8 @@ extension PostActivityVC: GMSAutocompleteViewControllerDelegate {
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
+        print("Place address: \(String(describing: place.formattedAddress))")
+        print("Place attributions: \(String(describing: place.attributions))")
         print("Place Lat and Long: \(place.coordinate.latitude) lat and \(place.coordinate.longitude)")
         
         activityLocation.text = place.name

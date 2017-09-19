@@ -374,15 +374,21 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                                     if let posterDict = snapshot.value as? Dictionary<String,Any> {
                                         let activity = Activity(postKey: key, userLoc: userCLLocation!, postData: activityDict, posterData: posterDict)
                                         
-                                        if activity.active == "yes" {
-                                            if activity.time < self.timeNow {
-                                                //switch activity.active to no in database
-                                            } else {
-                                                if activity.distance <= userRadius {
-                                                    DataService.instance.activities.append(activity)
-                                                    
-                                                    self.sortDataServiceActivities()
-                                                }
+                                        //if activity.active == "yes" {
+                                        if activity.time < self.timeNow {
+                                            
+                                            DataService.instance.moveToOldActivity(withActivityData: activityDict, key: key, uploadComplete: { (success) in
+                                                
+                                                DataService.instance.REF_ACTS.child(key).removeValue()
+                                                print("Removed Activity from active activities")
+                                            })
+                                            
+                                        } else {
+                                            if activity.distance <= userRadius {
+                                                DataService.instance.activities.append(activity)
+                                                
+                                                self.sortDataServiceActivities()
+                                                //}
                                             }
                                         }
                                     }
@@ -433,15 +439,19 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                                         if let posterDict = snapshot.value as? Dictionary<String,Any> {
                                             let activity = Activity(postKey: key, userLoc: userCLLocation!, postData: activityDict, posterData: posterDict)
                                             
-                                            if activity.active == "yes" {
-                                                if activity.time < self.timeNow {
-                                                    //switch activity.active to no in database 
-                                                } else {
-                                                    if activity.distance <= userRadius {
-                                                        DataService.instance.activities.append(activity)
+                                            //if activity.active == "yes" {
+                                            if activity.time < self.timeNow {
+                                                    //switch activity.active to no in database
+                                                DataService.instance.moveToOldActivity(withActivityData: activityDict, key: key, uploadComplete: { (success) in
+                                                        print("Moved Activity")
+                                                })
+                                                    
+                                            } else {
+                                                if activity.distance <= userRadius {
+                                                    DataService.instance.activities.append(activity)
                                                         
-                                                        self.sortDataServiceActivities()
-                                                    }
+                                                    self.sortDataServiceActivities()
+                                                    //}
                                                 }
                                             }
                                             

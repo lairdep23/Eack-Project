@@ -50,7 +50,6 @@ class ActivityDetailVC: UIViewController, MKMapViewDelegate {
 
             numberToJoin.text = "\(activity.numberOfP!) More Can Join!"
             activityImage.kf.setImage(with: URL(string: activity.mainImageURL))
-            //activityTime.text = activity.time
             activityTitle.text = activity.title
             createdUser.text = activity.posterName
             activityAddress.text = activity.location
@@ -123,7 +122,6 @@ class ActivityDetailVC: UIViewController, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let circleView = MKCircleRenderer(overlay: overlay)
-        //circleView.strokeColor = UIColor.orange.withAlphaComponent(0.6)
         circleView.fillColor = UIColor.orange.withAlphaComponent(0.4)
         return circleView
     }
