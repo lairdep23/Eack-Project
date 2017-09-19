@@ -221,9 +221,9 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     }
                     //Sending Activity Data to Firebase
                     
-                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactTimeInterval, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp(), "exactLat": exactLat, "exactLong": exactLong]
+                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid, "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactTimeInterval, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp(), "exactLat": exactLat, "exactLong": exactLong]
                     
-                    DataService.instance.uploadActivity(withActivityData: postData, uploadComplete: { (isComplete) in
+                    DataService.instance.uploadActivity(withActivityData: postData, category: category, uploadComplete: { (isComplete) in
                         if isComplete {
                             self.postBtn.isEnabled = true
                             self.activityIndicator.stopAnimating()
