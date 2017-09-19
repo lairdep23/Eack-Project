@@ -41,6 +41,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     var usersCity = "You"
     var bottomBarSelected = "Ending"
     var categorySelected = "All"
+    var locNotifPushed = false
     
     private let refreshControl = UIRefreshControl()
     
@@ -112,6 +113,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         tableView.reloadData()
+        locNotifPushed = false
         
     }
     
@@ -234,8 +236,13 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         }
         
         userCLLocation = CLLocation(latitude: userLoc.latitude, longitude: userLoc.longitude)
-        getUsersCity(lat: userLoc.latitude, long: userLoc.longitude)
-        NotificationCenter.default.post(name: USER_LOCATION_UPDATED, object: nil)
+        if locNotifPushed == false {
+            getUsersCity(lat: userLoc.latitude, long: userLoc.longitude)
+            NotificationCenter.default.post(name: USER_LOCATION_UPDATED, object: nil)
+            locNotifPushed = true
+            print("Evan: User Notification Pushed")
+        }
+        
         locationManager.stopUpdatingLocation()
         
         
@@ -418,7 +425,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                                         if let posterDict = snapshot.value as? Dictionary<String,Any> {
                                             let activity = Activity(postKey: key, userLoc: userCLLocation!, postData: activityDict, posterData: posterDict)
                                             
-                                            print(activity.distance)
+                                            // print(activity.distance)
                                             if activity.distance <= userRadius {
                                                 DataService.instance.activities.append(activity)
                                                 self.sortDataServiceActivities()
