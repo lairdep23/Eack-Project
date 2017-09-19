@@ -25,6 +25,7 @@ class Activity {
     private(set) public var category: String!
     private(set) public var postKey: String!
     private(set) public var distance: Double!
+    private(set) public var active: String!
     
     
     
@@ -107,6 +108,10 @@ class Activity {
         
         if let posterName = posterData["name"] as? String {
             self.posterName = posterName
+        }
+        
+        if let active = postData["active"] as? String {
+            self.active = active
         }
         
     }

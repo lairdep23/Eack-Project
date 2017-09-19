@@ -194,10 +194,6 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         let exactTimeInterval: TimeInterval = exactTime.timeIntervalSince1970
         
-//        let dateFormatter: DateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "E, MMM d, h:mm a"
-//
-//        let exactDateString = dateFormatter.string(from: exactTime)
         
         //Uploading Image to Firebase Storage
         
@@ -225,7 +221,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                     }
                     //Sending Activity Data to Firebase
                     
-                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactTimeInterval, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp(), "exactLat": exactLat, "exactLong": exactLong]
+                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid ?? "", "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactTimeInterval, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp(), "exactLat": exactLat, "exactLong": exactLong, "active": "yes"]
                     
                     DataService.instance.uploadActivity(withActivityData: postData, uploadComplete: { (isComplete) in
                         if isComplete {

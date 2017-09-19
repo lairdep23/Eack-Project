@@ -42,6 +42,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     var bottomBarSelected = "Ending"
     var categorySelected = "All"
     var locNotifPushed = false
+    let timeNow = Int(Date().timeIntervalSince1970)
     
     private let refreshControl = UIRefreshControl()
     
@@ -55,6 +56,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = false
+        
         
         //Setting up refresh control on TableView
         
@@ -372,12 +374,17 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                                     if let posterDict = snapshot.value as? Dictionary<String,Any> {
                                         let activity = Activity(postKey: key, userLoc: userCLLocation!, postData: activityDict, posterData: posterDict)
                                         
-                                        if activity.distance <= userRadius {
-                                            DataService.instance.activities.append(activity)
-                                            
-                                            self.sortDataServiceActivities()
+                                        if activity.active == "yes" {
+                                            if activity.time < self.timeNow {
+                                                //switch activity.active to no in database
+                                            } else {
+                                                if activity.distance <= userRadius {
+                                                    DataService.instance.activities.append(activity)
+                                                    
+                                                    self.sortDataServiceActivities()
+                                                }
+                                            }
                                         }
-                                        
                                     }
                                     self.activityIndicator.stopAnimating()
                                     //self.tableView.reloadData()
@@ -412,6 +419,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
             
         } else {
             let catQuery = DataService.instance.REF_ACTS.queryOrdered(byChild: "category").queryEqual(toValue: selectedCategory)
+            print(selectedCategory)
             
             catQuery.observe(.value) { (snapshot) in
                 if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
@@ -425,12 +433,18 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                                         if let posterDict = snapshot.value as? Dictionary<String,Any> {
                                             let activity = Activity(postKey: key, userLoc: userCLLocation!, postData: activityDict, posterData: posterDict)
                                             
-                                            // print(activity.distance)
-                                            if activity.distance <= userRadius {
-                                                DataService.instance.activities.append(activity)
-                                                self.sortDataServiceActivities()
-                                                
+                                            if activity.active == "yes" {
+                                                if activity.time < self.timeNow {
+                                                    //switch activity.active to no in database 
+                                                } else {
+                                                    if activity.distance <= userRadius {
+                                                        DataService.instance.activities.append(activity)
+                                                        
+                                                        self.sortDataServiceActivities()
+                                                    }
+                                                }
                                             }
+                                            
                                         }
                                         self.activityIndicator.stopAnimating()
                                         //self.tableView.reloadData()
