@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>238895325315-b5loau9c0bhca4228gjr1ts6nfmt95sr.apps.googleusercontent.com</string>
+	<string>238895325315-jlgiudlu456c0m3l4h392avvq2genrvp.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.238895325315-b5loau9c0bhca4228gjr1ts6nfmt95sr</string>
+	<string>com.googleusercontent.apps.238895325315-jlgiudlu456c0m3l4h392avvq2genrvp</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCCjALNGLvrF3VgEJMpLtGgJMoqMCKBX-8</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.evanlaird.Trestled</string>
+	<string>com.evanlaird.TrestledApp</string>
 	<key>PROJECT_ID</key>
 	<string>trestled</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:238895325315:ios:888b490bed4260b9</string>
+	<string>1:238895325315:ios:33ecffd87c723269</string>
 	<key>DATABASE_URL</key>
 	<string>https://trestled.firebaseio.com</string>
 </dict>

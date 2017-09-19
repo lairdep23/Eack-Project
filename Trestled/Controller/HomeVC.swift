@@ -62,8 +62,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         } else {
             tableView.addSubview(refreshControl)
         }
-        
-        refreshControl.attributedTitle = NSAttributedString(string: "Gathering Activities Perfect For You")
         refreshControl.addTarget(self, action: #selector(HomeVC.refreshTableView(_:)), for: .valueChanged)
         
         //Setting Bottom Tab Bar
@@ -107,6 +105,22 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         
         activityIndicator.hidesWhenStopped = true
         
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeVC.locationUpdated), name: USER_LOCATION_UPDATED, object: nil)
+
+       
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        tableView.reloadData()
+        
+    }
+    
+    
+    @objc func handleTap() {
+        self.view.endEditing(true)
+    }
+    
+    @objc func locationUpdated() {
         getAllFirebaseActivities { (success) in
             //Setting the "All" Category Selected in collectionView
             let index = IndexPath(row: 0, section: 0)
@@ -115,18 +129,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
             self.showSelectedCell(firstSelected!)
             
         }
-        
-
-       
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        tableView.reloadData()
-    }
-    
-    
-    @objc func handleTap() {
-        self.view.endEditing(true)
     }
     
     //TableView of Activities
@@ -183,6 +185,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCategory = DataService.instance.getCategories()[indexPath.row].name
+        categorySelected = selectedCategory
         
         if let oldCell = collectionView.cellForItem(at: selectedCategoryCell) {
             oldCell.backgroundColor = UIColor.clear
@@ -232,6 +235,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         
         userCLLocation = CLLocation(latitude: userLoc.latitude, longitude: userLoc.longitude)
         getUsersCity(lat: userLoc.latitude, long: userLoc.longitude)
+        NotificationCenter.default.post(name: USER_LOCATION_UPDATED, object: nil)
         locationManager.stopUpdatingLocation()
         
         
@@ -342,22 +346,30 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
         activityIndicator.isHidden = false
         //Firebase Listener
         
-        DataService.instance.REF_ACTS.observe(.value) { (snapshot) in
+        // Retrieving all activities within 1.5 longitude of userLocation
+        let queryLongStart = (userCLLocation?.coordinate.longitude)! - 1.5
+        let queryLongEnd = (userCLLocation?.coordinate.longitude)! + 1.5
+        
+        let longQuery = DataService.instance.REF_ACTS.queryOrdered(byChild: "exactLong").queryStarting(atValue: queryLongStart).queryEnding(atValue: queryLongEnd)
+        
+        longQuery.observe(.value) { (snapshot) in
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                 DataService.instance.activities.removeAll()
                 if snapshots.count != 0 {
                     for snap in snapshots {
                         if let activityDict = snap.value as? Dictionary<String,Any> {
                             let key = snap.key
+                                    //print("made it here: \(activityDict["title"] ?? "poop")")
                             if let posterID = activityDict["posterID"] as? String {
                                 DataService.instance.REF_USERS.child(posterID).observeSingleEvent(of: .value, with: { (snapshot) in
                                     if let posterDict = snapshot.value as? Dictionary<String,Any> {
                                         let activity = Activity(postKey: key, userLoc: userCLLocation!, postData: activityDict, posterData: posterDict)
                                         
-                                        DataService.instance.activities.append(activity)
-                                        
-                                        self.sortDataServiceActivities()
-                                        
+                                        if activity.distance <= userRadius {
+                                            DataService.instance.activities.append(activity)
+                                            
+                                            self.sortDataServiceActivities()
+                                        }
                                         
                                     }
                                     self.activityIndicator.stopAnimating()
@@ -407,10 +419,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
                                             let activity = Activity(postKey: key, userLoc: userCLLocation!, postData: activityDict, posterData: posterDict)
                                             
                                             print(activity.distance)
-                                            DataService.instance.activities.append(activity)
-                                            self.sortDataServiceActivities()
-                                            
-                                            
+                                            if activity.distance <= userRadius {
+                                                DataService.instance.activities.append(activity)
+                                                self.sortDataServiceActivities()
+                                                
+                                            }
                                         }
                                         self.activityIndicator.stopAnimating()
                                         //self.tableView.reloadData()
@@ -436,11 +449,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICo
     }
     
     @objc private func refreshTableView(_ sender: Any) {
-        getAllFirebaseActivities { (success) in
-            if success {
-                self.refreshControl.endRefreshing()
-            }
-        }
+        getFirebaseActivitiesByCategory(categorySelected)
+        self.refreshControl.endRefreshing()
     }
     
     func sortDataServiceActivities() {

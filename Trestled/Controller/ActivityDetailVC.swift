@@ -38,7 +38,7 @@ class ActivityDetailVC: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var userCreatedImage: ProfileImgView!
     
     var activityRow: Int?
-    
+    //var activity: Activity?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,7 +132,10 @@ class ActivityDetailVC: UIViewController, MKMapViewDelegate {
     
     @IBAction func requestToJoinPressed(_ sender: Any) {
         if activityRow != nil {
-            performSegue(withIdentifier: "ToMessageView", sender: activityRow)
+            let activity = DataService.instance.getActivities()[activityRow!]
+            print(activity.postKey)
+            
+            //performSegue(withIdentifier: "ToMessageView", sender: activityRow)
         }
     }
     
