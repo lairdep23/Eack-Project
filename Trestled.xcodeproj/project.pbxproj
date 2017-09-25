@@ -15,7 +15,6 @@
 		201E644E1F6199DC00C83B30 /* PolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E644D1F6199DC00C83B30 /* PolicyVC.swift */; };
 		201FE6DA1F509A0D00EC7E0F /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201FE6D91F509A0D00EC7E0F /* LoginVC.swift */; };
 		202A9D471F2AD837005257ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D461F2AD837005257ED /* AppDelegate.swift */; };
-		202A9D4C1F2AD837005257ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4A1F2AD837005257ED /* Main.storyboard */; };
 		202A9D4E1F2AD837005257ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4D1F2AD837005257ED /* Assets.xcassets */; };
 		202A9D511F2AD837005257ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4F1F2AD837005257ED /* LaunchScreen.storyboard */; };
 		202A9D611F2ADC62005257ED /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202A9D601F2ADC62005257ED /* SideMenuVC.swift */; };
@@ -301,7 +300,6 @@
 				202A9D511F2AD837005257ED /* LaunchScreen.storyboard in Resources */,
 				206234BA1F6C936E00BA2C99 /* GoogleService-Info.plist in Resources */,
 				202A9D4E1F2AD837005257ED /* Assets.xcassets in Resources */,
-				202A9D4C1F2AD837005257ED /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
