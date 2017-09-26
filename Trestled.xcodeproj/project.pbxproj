@@ -35,6 +35,7 @@
 		209F4DFD1F3F3A6000E206B8 /* PostActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F4DFC1F3F3A6000E206B8 /* PostActivityVC.swift */; };
 		20AB9D901F2CC80C004681B4 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB9D8F1F2CC80C004681B4 /* DataService.swift */; };
 		20AB9D921F2CC86C004681B4 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB9D911F2CC86C004681B4 /* Activity.swift */; };
+		20B57D811F7A9C080049E1A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4A1F2AD837005257ED /* Main.storyboard */; };
 		20BA9FED1F2D47CB00FF1E00 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FEC1F2D47CB00FF1E00 /* ProfileButton.swift */; };
 		20BA9FEF1F2D4DA800FF1E00 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FEE1F2D4DA800FF1E00 /* Category.swift */; };
 		20BA9FF11F2D4E3700FF1E00 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FF01F2D4E3700FF1E00 /* CategoryCell.swift */; };
@@ -300,6 +301,7 @@
 				202A9D511F2AD837005257ED /* LaunchScreen.storyboard in Resources */,
 				206234BA1F6C936E00BA2C99 /* GoogleService-Info.plist in Resources */,
 				202A9D4E1F2AD837005257ED /* Assets.xcassets in Resources */,
+				20B57D811F7A9C080049E1A3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

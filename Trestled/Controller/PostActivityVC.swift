@@ -151,14 +151,6 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             return
         }
         
-        guard let image = activityImage.image, image != UIImage(named:"camera") else {
-            print("Evan: Must Select an Image")
-            showMissingAlert(message: "Oops! Looks like you missed selecting an image!")
-            self.postBtn.isEnabled = true
-            activityIndicator.stopAnimating()
-            return
-        }
-        
         guard let exactAddress = placeAddress, exactAddress != "" else {
             print("Evan: Must select location")
             showBasicAlert(title: "Oops!", message: "Looks like we couldn't get the address off of the selected location.")
@@ -169,6 +161,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         guard let exactLat = placeLat else {return}
         guard let exactLong = placeLong else {return}
+        guard let image = activityImage.image else {return}
         
         let selectedNumberOfPString = numberArray[numberOfPeoplePicker.selectedRow(inComponent: 0)]
         var selectedNumberOfP: Int?
@@ -197,48 +190,70 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
         //Uploading Image to Firebase Storage
         
-        if let imgData = UIImageJPEGRepresentation(image, 0.2) {
+        if image == UIImage(named: "camera") {
+            let downloadURL = "camera"
             
-            let imageUID = NSUUID().uuidString
-            let metaData = StorageMetadata()
-            metaData.contentType = "image/jpeg"
+            let postData: Dictionary<String,Any> = ["posterID": USER?.uid, "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactTimeInterval, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp(), "exactLat": exactLat, "exactLong": exactLong]
             
-            DataService.instance.REF_PICS.child(imageUID).putData(imgData, metadata: metaData, completion: { (metaData, error) in
-                
-                if error != nil {
-                    print("Evan: unable to upload image \(error.debugDescription))")
-                    self.showBasicAlert(title: "Oops!", message: "Looks like we had an issue uploading your image!")
-                    self.activityIndicator.stopAnimating()
+            DataService.instance.uploadActivity(withActivityData: postData, category: category, uploadComplete: { (isComplete) in
+                if isComplete {
                     self.postBtn.isEnabled = true
+                    self.activityIndicator.stopAnimating()
+                    self.firstTouch = true
+                    self.dismiss(animated: true, completion: nil)
                 } else {
-                    print("Evan: upload image successful")
-                    guard let downloadURL = metaData?.downloadURL()?.absoluteString else {
-                        print("Evan: couldn't get downloadURL")
-                        self.showBasicAlert(title: "Oops!", message: "Looks like we couldn't get your image it's own url!")
-                        self.activityIndicator.stopAnimating()
-                        self.postBtn.isEnabled = true
-                        return
-                    }
-                    //Sending Activity Data to Firebase
-                    
-                    let postData: Dictionary<String,Any> = ["posterID": USER?.uid, "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactTimeInterval, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp(), "exactLat": exactLat, "exactLong": exactLong]
-                    
-                    DataService.instance.uploadActivity(withActivityData: postData, category: category, uploadComplete: { (isComplete) in
-                        if isComplete {
-                            self.postBtn.isEnabled = true
-                            self.activityIndicator.stopAnimating()
-                            self.firstTouch = true
-                            self.dismiss(animated: true, completion: nil)
-                        } else {
-                            self.postBtn.isEnabled = true
-                            self.activityIndicator.stopAnimating()
-                            print("Error uploading activity")
-                            self.showBasicAlert(title: "Oops!", message: "Looks like we had an issue uploading your activity!")
-                        }
-                    })
-                    
+                    self.postBtn.isEnabled = true
+                    self.activityIndicator.stopAnimating()
+                    print("Error uploading activity")
+                    self.showBasicAlert(title: "Oops!", message: "Looks like we had an issue uploading your activity!")
                 }
             })
+            
+        } else {
+            if let imgData = UIImageJPEGRepresentation(image, 0.2) {
+                
+                let imageUID = NSUUID().uuidString
+                let metaData = StorageMetadata()
+                metaData.contentType = "image/jpeg"
+                
+                DataService.instance.REF_PICS.child(imageUID).putData(imgData, metadata: metaData, completion: { (metaData, error) in
+                    
+                    if error != nil {
+                        print("Evan: unable to upload image \(error.debugDescription))")
+                        self.showBasicAlert(title: "Oops!", message: "Looks like we had an issue uploading your image!")
+                        self.activityIndicator.stopAnimating()
+                        self.postBtn.isEnabled = true
+                    } else {
+                        print("Evan: upload image successful")
+                        guard let downloadURL = metaData?.downloadURL()?.absoluteString else {
+                            print("Evan: couldn't get downloadURL")
+                            self.showBasicAlert(title: "Oops!", message: "Looks like we couldn't get your image it's own url!")
+                            self.activityIndicator.stopAnimating()
+                            self.postBtn.isEnabled = true
+                            return
+                        }
+                        //Sending Activity Data to Firebase
+                        
+                        let postData: Dictionary<String,Any> = ["posterID": USER?.uid, "title": title, "category": category , "desc": desc, "location": location, "exactLocation": exactAddress , "photoURL": downloadURL, "exactTime": exactTimeInterval, "numberOfPeople": numberOfP, "postDate": ServerValue.timestamp(), "exactLat": exactLat, "exactLong": exactLong]
+                        
+                        DataService.instance.uploadActivity(withActivityData: postData, category: category, uploadComplete: { (isComplete) in
+                            if isComplete {
+                                self.postBtn.isEnabled = true
+                                self.activityIndicator.stopAnimating()
+                                self.firstTouch = true
+                                self.dismiss(animated: true, completion: nil)
+                            } else {
+                                self.postBtn.isEnabled = true
+                                self.activityIndicator.stopAnimating()
+                                print("Error uploading activity")
+                                self.showBasicAlert(title: "Oops!", message: "Looks like we had an issue uploading your activity!")
+                            }
+                        })
+                        
+                    }
+                })
+            }
+            
         }
     }
     
@@ -303,6 +318,7 @@ class PostActivityVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let alert = DataService.instance.showAlert(title: title, message: message)
         present(alert, animated: true, completion: nil)
     }
+    
     
     
     

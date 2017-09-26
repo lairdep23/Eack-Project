@@ -23,11 +23,16 @@ class ActivityCell: UITableViewCell {
     
     
     func updateViews(activity: Activity, userLocation: CLLocation){
-        self.activityImage.kf.setImage(with: URL(string:activity.mainImageURL))
         self.activityTitle.text = activity.title
         self.activityLocation.text = activity.location
         self.activityUserCreated.text = activity.posterName
         self.activityUserImage.kf.setImage(with: URL(string: activity.posterImgURL))
+        
+        if activity.mainImageURL == "camera" {
+            self.activityImage.image = UIImage(named: "ActivityDefault")
+        } else {
+            self.activityImage.kf.setImage(with: URL(string:activity.mainImageURL))
+        }
         
         if activity.distance != nil {
             let activityMilesString = String(format: "%.1f", activity.distance)
