@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		201038081F5748ED002078E4 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201038071F5748ED002078E4 /* SearchVC.swift */; };
-		201E64451F61996A00C83B30 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E64441F61996A00C83B30 /* ProfileVC.swift */; };
 		201E64471F61998400C83B30 /* MessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E64461F61998400C83B30 /* MessagesVC.swift */; };
 		201E64491F6199AB00C83B30 /* MyActivitiesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E64481F6199AB00C83B30 /* MyActivitiesVC.swift */; };
 		201E644C1F6199C700C83B30 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E644B1F6199C700C83B30 /* SettingsVC.swift */; };
@@ -33,9 +32,9 @@
 		209EB01E1F3BDF1400FC5FC2 /* MessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209EB01D1F3BDF1400FC5FC2 /* MessageVC.swift */; };
 		209F4DFB1F3F27BD00E206B8 /* KeyboardBoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F4DFA1F3F27BD00E206B8 /* KeyboardBoundView.swift */; };
 		209F4DFD1F3F3A6000E206B8 /* PostActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F4DFC1F3F3A6000E206B8 /* PostActivityVC.swift */; };
+		20A4F6DC1F85E0A000086245 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4A1F2AD837005257ED /* Main.storyboard */; };
 		20AB9D901F2CC80C004681B4 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB9D8F1F2CC80C004681B4 /* DataService.swift */; };
 		20AB9D921F2CC86C004681B4 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AB9D911F2CC86C004681B4 /* Activity.swift */; };
-		20B57D811F7A9C080049E1A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 202A9D4A1F2AD837005257ED /* Main.storyboard */; };
 		20BA9FED1F2D47CB00FF1E00 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FEC1F2D47CB00FF1E00 /* ProfileButton.swift */; };
 		20BA9FEF1F2D4DA800FF1E00 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FEE1F2D4DA800FF1E00 /* Category.swift */; };
 		20BA9FF11F2D4E3700FF1E00 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BA9FF01F2D4E3700FF1E00 /* CategoryCell.swift */; };
@@ -301,7 +300,7 @@
 				202A9D511F2AD837005257ED /* LaunchScreen.storyboard in Resources */,
 				206234BA1F6C936E00BA2C99 /* GoogleService-Info.plist in Resources */,
 				202A9D4E1F2AD837005257ED /* Assets.xcassets in Resources */,
-				20B57D811F7A9C080049E1A3 /* Main.storyboard in Resources */,
+				20A4F6DC1F85E0A000086245 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +365,6 @@
 				204916CA1F4B70C000E199B3 /* ShareButton.swift in Sources */,
 				20BA9FF31F2D5FB700FF1E00 /* TopView.swift in Sources */,
 				2098CF001F2E85B700F82274 /* ActivityDetailVC.swift in Sources */,
-				201E64451F61996A00C83B30 /* ProfileVC.swift in Sources */,
 				20BA9FF11F2D4E3700FF1E00 /* CategoryCell.swift in Sources */,
 				20AB9D921F2CC86C004681B4 /* Activity.swift in Sources */,
 				20BE908E1F50D9FD008F6E3F /* Constants.swift in Sources */,
